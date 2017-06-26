@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "218878740748",
+    "firebase_url": "https://questionsanswers-564ec.firebaseio.com",
+    "project_id": "questionsanswers-564ec",
+    "storage_bucket": "questionsanswers-564ec.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:218878740748:android:19849a2a6fd7c173",
+        "android_client_info": {
+          "package_name": "com.seacam.fotofind"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "218878740748-tqoi338qg3hd95qi7imr0fb5633ahp2k.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.seacam.fotofind",
+            "certificate_hash": "4e3e8bbb401c6c7ab38da7dfa1dcc21fcbced8df"
+          }
+        },
+        {
+          "client_id": "218878740748-ebkhp9rh8460rvs7pdito7fiv93ikhcl.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDR_rT_rHKkoCT-Yuc0aZ4scX4rwChC3Uw"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "218878740748-ebkhp9rh8460rvs7pdito7fiv93ikhcl.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
