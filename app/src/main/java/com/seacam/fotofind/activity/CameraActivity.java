@@ -2,12 +2,14 @@ package com.seacam.fotofind.activity;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.hardware.SensorEventListener;
 import android.provider.MediaStore;
+import android.support.v4.view.GestureDetectorCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Base64;
+import android.view.GestureDetector;
 import android.view.MotionEvent;
-import android.view.View;
 
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -17,11 +19,28 @@ import java.io.ByteArrayOutputStream;
 
 public class CameraActivity extends AppCompatActivity {
     private static final int REQUEST_IMAGE_CAPTURE = 111;
+    private GestureDetectorCompat mDetector;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_camera);
+        mDetector = new GestureDetectorCompat(this, new MyGestureListener());
+    }
+
+    @Override
+    public boolean onTouchEvent(MotionEvent event) {
+        this.mDetector.onTouchEvent(event);
+        return super.onTouchEvent(event);
+    }
+
+    class MyGestureListener extends GestureDetector.SimpleOnGestureListener {
+
+        @Override
+        public boolean onDown(MotionEvent event) {
+            onLaunchCamera();
+            return true;
+        }
     }
 
     public void onLaunchCamera() {
