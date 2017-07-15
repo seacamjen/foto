@@ -76,7 +76,7 @@ public class CameraActivity extends Activity implements GoogleApiClient.Connecti
         if (mLastLocation != null) {
             double latitude = mLastLocation.getLatitude();
             double longitude = mLastLocation.getLongitude();
-            float compass = mLastLocation.getBearing();
+            float compass = mLastLocation.getAccuracy();
 
             lblLocation.setText(latitude + ", " + longitude + ", " + compass);
 
