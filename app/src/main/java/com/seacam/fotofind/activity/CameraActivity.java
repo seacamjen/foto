@@ -183,13 +183,20 @@ public class CameraActivity extends Activity implements GoogleApiClient.Connecti
             encodeBitmapAndSaveToFirebase(imageBitmap);
             displayLocation();
 
-            double lat = latitude;
-            double longi = longitude;
-            long currentTime = time;
-            String pics = imageToSave;
+            Intent intent = new Intent(CameraActivity.this, SaveFoto.class);
+            intent.putExtra("latitude", latitude);
+            intent.putExtra("longitude", longitude);
+            intent.putExtra("time", time);
+            intent.putExtra("foto", imageToSave);
+            startActivity(intent);
 
-            Fotos fotos = new Fotos(lat, longi, currentTime, pics);
-            saveFotoToFirebase(fotos);
+//            double lat = latitude;
+//            double longi = longitude;
+//            long currentTime = time;
+//            String pics = imageToSave;
+
+//            Fotos fotos = new Fotos(lat, longi, currentTime, pics);
+//            saveFotoToFirebase(fotos);
         }
     }
 
