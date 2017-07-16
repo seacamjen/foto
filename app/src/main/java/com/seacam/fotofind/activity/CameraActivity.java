@@ -38,23 +38,12 @@ public class CameraActivity extends Activity implements GoogleApiClient.Connecti
     private Location mLastLocation;
 
     private GoogleApiClient mGoogleApiClient;
-    private boolean mRequestingLocationUpdates = false;
-    private LocationRequest mLocationRequest;
-
-    private static int UPDATE_INTERVAL = 10000;
-    private static int FATEST_INTERVAL = 5000;
-    private static int DISPLACEMENT = 10;
 
     private TextView lblLocation;
     private Button btnShowLocation, btnStartLocationUpdates;
 
-//    private DatabaseReference mActiveRef;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-//        mActiveRef = FirebaseDatabase
-//                .getInstance()
-//                .getReference();
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_camera);
@@ -67,14 +56,6 @@ public class CameraActivity extends Activity implements GoogleApiClient.Connecti
         if (checkPlayServices()) {
             buildGoogleApiClient();
         }
-
-//        btnShowLocation.setOnClickListener(new View.OnClickListener() {
-//
-//            @Override
-//            public void onClick(View v) {
-//                displayLocation();
-//            }
-//        });
     }
     //begin location
 
@@ -184,21 +165,8 @@ public class CameraActivity extends Activity implements GoogleApiClient.Connecti
             intent.putExtra("time", time);
             intent.putExtra("foto", imageToSave);
             startActivity(intent);
-
-//            double lat = latitude;
-//            double longi = longitude;
-//            long currentTime = time;
-//            String pics = imageToSave;
-
-//            Fotos fotos = new Fotos(lat, longi, currentTime, pics);
-//            saveFotoToFirebase(fotos);
         }
     }
-
-//    public void saveFotoToFirebase(Fotos fotos) {
-//        mActiveRef.child("photos").push().setValue(fotos);
-//        Toast.makeText(getApplicationContext(), "Item is saved", Toast.LENGTH_SHORT).show();
-//    }
 
     public void encodeBitmapAndSaveToFirebase(Bitmap bitmap) {
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
