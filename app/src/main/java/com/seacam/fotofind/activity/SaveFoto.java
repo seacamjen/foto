@@ -1,28 +1,21 @@
 package com.seacam.fotofind.activity;
 
-
+import android.content.Intent;
+import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
 
 import info.androidhive.locationapi.R;
 
-
-public class SaveFoto extends Fragment {
-
-
-    public SaveFoto() {
-        // Required empty public constructor
-    }
-
+public class SaveFoto extends AppCompatActivity {
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_save_foto, container, false);
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_save_foto);
+        Intent intent = getIntent();
+        String latitude = intent.getStringExtra("latitude");
+        String longitude = intent.getStringExtra("longitude");
+        String time = intent.getStringExtra("time");
+        String foto = intent.getStringExtra("foto");
     }
-
 }

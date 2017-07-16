@@ -34,9 +34,9 @@ public class CameraActivity extends Activity implements GoogleApiClient.Connecti
     private static final int REQUEST_IMAGE_CAPTURE = 111;
     private GestureDetectorCompat mDetector;
     private String imageToSave;
-    private double latitude;
-    private double longitude;
-    private long time;
+    private String latitude;
+    private String longitude;
+    private String time;
 
     private static final String TAG = CameraActivity.class.getSimpleName();
     private final static int PLAY_SERVICES_RESOLUTION_REQUEST = 1000;
@@ -88,9 +88,9 @@ public class CameraActivity extends Activity implements GoogleApiClient.Connecti
         mLastLocation = LocationServices.FusedLocationApi.getLastLocation(mGoogleApiClient);
 
         if (mLastLocation != null) {
-            latitude = mLastLocation.getLatitude();
-            longitude = mLastLocation.getLongitude();
-            time = mLastLocation.getTime();
+            latitude = Double.toString(mLastLocation.getLatitude());
+            longitude = Double.toString(mLastLocation.getLongitude());
+            time = Long.toString(mLastLocation.getTime());
 
             lblLocation.setText(latitude + ", " + longitude + ", " + time);
 
