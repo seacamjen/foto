@@ -3,7 +3,6 @@ package com.seacam.fotofind.activity;
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
-import android.icu.text.DateFormat;
 import android.location.Location;
 import android.provider.MediaStore;
 import android.support.v4.view.GestureDetectorCompat;
@@ -12,7 +11,6 @@ import android.util.Base64;
 import android.util.Log;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
-import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -22,9 +20,6 @@ import com.google.android.gms.common.GooglePlayServicesUtil;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.location.LocationRequest;
 import com.google.android.gms.location.LocationServices;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.seacam.fotofind.models.Fotos;
 
 import java.io.ByteArrayOutputStream;
 
@@ -53,13 +48,13 @@ public class CameraActivity extends Activity implements GoogleApiClient.Connecti
     private TextView lblLocation;
     private Button btnShowLocation, btnStartLocationUpdates;
 
-    private DatabaseReference mActiveRef;
+//    private DatabaseReference mActiveRef;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        mActiveRef = FirebaseDatabase
-                .getInstance()
-                .getReference();
+//        mActiveRef = FirebaseDatabase
+//                .getInstance()
+//                .getReference();
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_camera);
@@ -200,10 +195,10 @@ public class CameraActivity extends Activity implements GoogleApiClient.Connecti
         }
     }
 
-    public void saveFotoToFirebase(Fotos fotos) {
-        mActiveRef.child("photos").push().setValue(fotos);
-        Toast.makeText(getApplicationContext(), "Item is saved", Toast.LENGTH_SHORT).show();
-    }
+//    public void saveFotoToFirebase(Fotos fotos) {
+//        mActiveRef.child("photos").push().setValue(fotos);
+//        Toast.makeText(getApplicationContext(), "Item is saved", Toast.LENGTH_SHORT).show();
+//    }
 
     public void encodeBitmapAndSaveToFirebase(Bitmap bitmap) {
         ByteArrayOutputStream baos = new ByteArrayOutputStream();

@@ -1,29 +1,29 @@
 package com.seacam.fotofind.models;
 
 public class Fotos {
-    double latitude;
-    double longitude;
-    long time;
+    String latitude;
+    String longitude;
+    String time;
     String image;
 
     public Fotos() {}
 
-    public Fotos(double latitude, double longitude, long time, String image) {
+    public Fotos(String latitude, String longitude, String time, String image) {
         this.latitude = latitude;
         this.longitude = longitude;
         this.time = time;
         this.image = image;
     }
 
-    public double getLatitude() {
+    public String getLatitude() {
         return latitude;
     }
 
-    public double getLongitude() {
+    public String getLongitude() {
         return longitude;
     }
 
-    public long getCompass() {
+    public String getCompass() {
         return time;
     }
 
