@@ -2,6 +2,7 @@ package com.seacam.fotofind.activity;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.Menu;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -28,9 +29,9 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
 
     @Override
     public void onMapReady(GoogleMap googleMap) {
-        LatLng sydney = new LatLng(-33.852, 151.211);
-        googleMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
-        googleMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
+        LatLng picture = new LatLng(45.4297133, -122.2637212);
+        googleMap.addMarker(new MarkerOptions().position(picture).title("Picture Location"));
+        googleMap.moveCamera(CameraUpdateFactory.newLatLng(picture));
     }
 
     @Override
