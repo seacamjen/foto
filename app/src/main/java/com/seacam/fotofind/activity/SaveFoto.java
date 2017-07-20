@@ -65,7 +65,7 @@ public class SaveFoto extends AppCompatActivity {
     public void saveFotoToFirebase(Fotos fotos) {
         mActiveRef.child("photos").push().setValue(fotos);
         Toast.makeText(getApplicationContext(), "Item is saved", Toast.LENGTH_SHORT).show();
-        Intent intent = new Intent(SaveFoto.this, CameraActivity.class);
+        Intent intent = new Intent(SaveFoto.this, MainActivity.class);
         startActivity(intent);
     }
 }
