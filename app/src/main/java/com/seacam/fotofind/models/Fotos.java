@@ -23,7 +23,7 @@ public class Fotos {
         return longitude;
     }
 
-    public String getCompass() {
+    public String getTime() {
         return time;
     }
 
