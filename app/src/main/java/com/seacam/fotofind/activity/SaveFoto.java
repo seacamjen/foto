@@ -28,9 +28,9 @@ public class SaveFoto extends AppCompatActivity implements GoogleApiClient.Conne
 
     private GestureDetectorCompat mDetector;
 
-    private String latitude;
-    private String longitude;
-    private String time;
+    private double latitude;
+    private double longitude;
+    private long time;
     private String foto;
     private boolean mLocationPermissionGranted;
     private static final int PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION = 1;
@@ -56,9 +56,6 @@ public class SaveFoto extends AppCompatActivity implements GoogleApiClient.Conne
         }
 
         Intent intent = getIntent();
-        latitude = intent.getStringExtra("latitude");
-        longitude = intent.getStringExtra("longitude");
-        time = intent.getStringExtra("time");
         foto = intent.getStringExtra("foto");
     }
 
@@ -80,11 +77,11 @@ public class SaveFoto extends AppCompatActivity implements GoogleApiClient.Conne
             mLastLocation = LocationServices.FusedLocationApi.getLastLocation(mGoogleApiClient);
 
             if (mLastLocation != null) {
-                latitude = Double.toString(mLastLocation.getLatitude());
-                longitude = Double.toString(mLastLocation.getLongitude());
-                time = Long.toString(mLastLocation.getTime());
+                latitude = mLastLocation.getLatitude();
+                longitude = mLastLocation.getLongitude();
+                time = mLastLocation.getTime();
             } else {
-
+                //log something?
             }
         }
     }
@@ -152,9 +149,9 @@ public class SaveFoto extends AppCompatActivity implements GoogleApiClient.Conne
 
         @Override
         public boolean onDown(MotionEvent event) {
-            String lat = latitude;
-            String longi = longitude;
-            String currentTime = time;
+            double lat = latitude;
+            double longi = longitude;
+            long currentTime = time;
             String pics = foto;
 
             Fotos fotos = new Fotos(lat, longi, currentTime, pics);
