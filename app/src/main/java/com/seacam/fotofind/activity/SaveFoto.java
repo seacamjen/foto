@@ -1,7 +1,10 @@
 package com.seacam.fotofind.activity;
 
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.location.Location;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.view.GestureDetectorCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -29,6 +32,8 @@ public class SaveFoto extends AppCompatActivity implements GoogleApiClient.Conne
     private String longitude;
     private String time;
     private String foto;
+    private boolean mLocationPermissionGranted;
+    private static final int PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION = 1;
 
     private static final String TAG = SaveFoto.class.getSimpleName();
     private final static int PLAY_SERVICES_RESOLUTION_REQUEST = 1000;
@@ -61,14 +66,26 @@ public class SaveFoto extends AppCompatActivity implements GoogleApiClient.Conne
 
 
     private void displayLocation() {
-        mLastLocation = LocationServices.FusedLocationApi.getLastLocation(mGoogleApiClient);
-
-        if (mLastLocation != null) {
-            latitude = Double.toString(mLastLocation.getLatitude());
-            longitude = Double.toString(mLastLocation.getLongitude());
-            time = Long.toString(mLastLocation.getTime());
+        if (ContextCompat.checkSelfPermission(this.getApplicationContext(),
+                android.Manifest.permission.ACCESS_FINE_LOCATION)
+                == PackageManager.PERMISSION_GRANTED) {
+            mLocationPermissionGranted = true;
         } else {
+            ActivityCompat.requestPermissions(this,
+                    new String[]{android.Manifest.permission.ACCESS_FINE_LOCATION},
+                    PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION);
+        }
 
+        if (mLocationPermissionGranted) {
+            mLastLocation = LocationServices.FusedLocationApi.getLastLocation(mGoogleApiClient);
+
+            if (mLastLocation != null) {
+                latitude = Double.toString(mLastLocation.getLatitude());
+                longitude = Double.toString(mLastLocation.getLongitude());
+                time = Long.toString(mLastLocation.getTime());
+            } else {
+
+            }
         }
     }
 
