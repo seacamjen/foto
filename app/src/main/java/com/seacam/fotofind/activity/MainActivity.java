@@ -37,6 +37,7 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.seacam.fotofind.models.Fotos;
 
 import info.androidhive.locationapi.R;
 
@@ -49,6 +50,7 @@ public class MainActivity extends AppCompatActivity
     private GoogleMap mMap;
     private CameraPosition mCameraPosition;
     private DatabaseReference refDatabase;
+    private ChildEventListener mChildEventListener;
 
     private GoogleApiClient mGoogleApiClient;
 
@@ -72,7 +74,7 @@ public class MainActivity extends AppCompatActivity
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        refDatabase = FirebaseDatabase.getInstance().getReference().child("photos");
+        refDatabase = FirebaseDatabase.getInstance().getReference("photos");
 
         Log.i(TAG, refDatabase.toString());
 
@@ -165,6 +167,8 @@ public class MainActivity extends AppCompatActivity
     public void onMapReady(GoogleMap map) {
         mMap = map;
 
+        addMarkersToMap(map);
+
         // Use a custom info window adapter to handle multiple lines of text in the
         // info window contents.
         mMap.setInfoWindowAdapter(new GoogleMap.InfoWindowAdapter() {
@@ -229,6 +233,40 @@ public class MainActivity extends AppCompatActivity
 //
 //            }
 //        });
+    }
+
+    private void addMarkersToMap(final GoogleMap map) {
+        mChildEventListener = refDatabase.addChildEventListener(new ChildEventListener() {
+            @Override
+            public void onChildAdded(DataSnapshot dataSnapshot, String s) {
+                Fotos marker = dataSnapshot.getValue(Fotos.class);
+                double latitude = marker.getLatitude();
+                double longitude = marker.getLongitude();
+                long time = marker.getTime();
+                LatLng location = new LatLng(latitude, longitude);
+                map.addMarker(new MarkerOptions().position(location).title("Yahoo"));
+            }
+
+            @Override
+            public void onChildChanged(DataSnapshot dataSnapshot, String s) {
+
+            }
+
+            @Override
+            public void onChildRemoved(DataSnapshot dataSnapshot) {
+
+            }
+
+            @Override
+            public void onChildMoved(DataSnapshot dataSnapshot, String s) {
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
     }
 
     /**
