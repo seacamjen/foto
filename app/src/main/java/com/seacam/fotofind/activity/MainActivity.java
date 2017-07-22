@@ -32,6 +32,11 @@ import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.firebase.database.ChildEventListener;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import info.androidhive.locationapi.R;
 
@@ -43,6 +48,7 @@ public class MainActivity extends AppCompatActivity
     private static final String TAG = MainActivity.class.getSimpleName();
     private GoogleMap mMap;
     private CameraPosition mCameraPosition;
+    private DatabaseReference refDatabase;
 
     private GoogleApiClient mGoogleApiClient;
 
@@ -66,6 +72,9 @@ public class MainActivity extends AppCompatActivity
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        refDatabase = FirebaseDatabase.getInstance().getReference().child("photos");
+
+        Log.i(TAG, refDatabase.toString());
 
         if (savedInstanceState != null) {
             mLastKnownLocation = savedInstanceState.getParcelable(KEY_LOCATION);
@@ -187,6 +196,39 @@ public class MainActivity extends AppCompatActivity
 
         // Get the current location of the device and set the position of the map.
         getDeviceLocation();
+
+//        refDatabase.addChildEventListener(new ChildEventListener() {
+//            @Override
+//            public void onChildAdded(DataSnapshot dataSnapshot, String s) {
+//                LatLng newLocation = new LatLng(
+//                        dataSnapshot.child("latitiude").getValue(Double.class),
+//                        dataSnapshot.child("longitude").getValue(Double.class)
+//                );
+//                mMap.addMarker(new MarkerOptions()
+//                    .position(newLocation)
+//                    .title("new Marker"));
+//            }
+//
+//            @Override
+//            public void onChildChanged(DataSnapshot dataSnapshot, String s) {
+//
+//            }
+//
+//            @Override
+//            public void onChildRemoved(DataSnapshot dataSnapshot) {
+//
+//            }
+//
+//            @Override
+//            public void onChildMoved(DataSnapshot dataSnapshot, String s) {
+//
+//            }
+//
+//            @Override
+//            public void onCancelled(DatabaseError databaseError) {
+//
+//            }
+//        });
     }
 
     /**
