@@ -200,39 +200,6 @@ public class MainActivity extends AppCompatActivity
 
         // Get the current location of the device and set the position of the map.
         getDeviceLocation();
-
-//        refDatabase.addChildEventListener(new ChildEventListener() {
-//            @Override
-//            public void onChildAdded(DataSnapshot dataSnapshot, String s) {
-//                LatLng newLocation = new LatLng(
-//                        dataSnapshot.child("latitiude").getValue(Double.class),
-//                        dataSnapshot.child("longitude").getValue(Double.class)
-//                );
-//                mMap.addMarker(new MarkerOptions()
-//                    .position(newLocation)
-//                    .title("new Marker"));
-//            }
-//
-//            @Override
-//            public void onChildChanged(DataSnapshot dataSnapshot, String s) {
-//
-//            }
-//
-//            @Override
-//            public void onChildRemoved(DataSnapshot dataSnapshot) {
-//
-//            }
-//
-//            @Override
-//            public void onChildMoved(DataSnapshot dataSnapshot, String s) {
-//
-//            }
-//
-//            @Override
-//            public void onCancelled(DatabaseError databaseError) {
-//
-//            }
-//        });
     }
 
     private void addMarkersToMap(final GoogleMap map) {
