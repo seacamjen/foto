@@ -1,6 +1,7 @@
 package com.seacam.fotofind.activity;
 
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Location;
 import android.os.Bundle;
@@ -11,6 +12,7 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.FrameLayout;
@@ -143,7 +145,9 @@ public class MainActivity extends AppCompatActivity
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
 //        getMenuInflater().inflate(R.menu.current_place_menu, menu);
-        return true;
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu_camera, menu);
+        return super.onCreateOptionsMenu(menu);
     }
 
     /**
@@ -156,7 +160,13 @@ public class MainActivity extends AppCompatActivity
 //        if (item.getItemId() == R.id.option_get_place) {
 //            showCurrentPlace();
 //        }
-        return true;
+        int id = item.getItemId();
+        if (id == R.id.action_add) {
+            Intent intent = new Intent(MainActivity.this, CameraActivity.class);
+            startActivity(intent);
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     /**
