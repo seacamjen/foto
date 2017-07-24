@@ -161,7 +161,7 @@ public class MainActivity extends AppCompatActivity
 //            showCurrentPlace();
 //        }
         int id = item.getItemId();
-        if (id == R.id.action_add) {
+        if (id == R.id.action_foto) {
             Intent intent = new Intent(MainActivity.this, CameraActivity.class);
             startActivity(intent);
             return true;
