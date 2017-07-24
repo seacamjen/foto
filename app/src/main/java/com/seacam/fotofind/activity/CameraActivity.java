@@ -1,11 +1,11 @@
 package com.seacam.fotofind.activity;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.provider.MediaStore;
 import android.support.v4.view.GestureDetectorCompat;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Base64;
 import android.view.GestureDetector;
 import android.view.Menu;
@@ -17,7 +17,7 @@ import java.io.ByteArrayOutputStream;
 
 import info.androidhive.locationapi.R;
 
-public class CameraActivity extends Activity {
+public class CameraActivity extends AppCompatActivity {
     private static final int REQUEST_IMAGE_CAPTURE = 111;
     private GestureDetectorCompat mDetector;
     private String imageToSave;
