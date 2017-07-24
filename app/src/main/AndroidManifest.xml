@@ -26,7 +26,11 @@
             android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyAntqtE_pgkMcxKeX_Vqc7SILImaORqmx0" />
 
-
+        <activity
+            android:name="com.seacam.fotofind.activity.MainActivity"
+            android:label="@string/app_name"
+            android:screenOrientation="portrait">
+        </activity>
         <activity
             android:name="com.seacam.fotofind.activity.CameraActivity"
             android:screenOrientation="portrait">
@@ -36,15 +40,11 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name="com.seacam.fotofind.activity.MainActivity"
-            android:label="@string/app_name"
-            android:screenOrientation="portrait">
+        <activity android:name="com.seacam.fotofind.activity.SaveFoto">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.seacam.fotofind.activity.CameraActivity"/>
         </activity>
-        <activity android:name="com.seacam.fotofind.activity.SaveFoto"></activity>
     </application>
 
 </manifest>
