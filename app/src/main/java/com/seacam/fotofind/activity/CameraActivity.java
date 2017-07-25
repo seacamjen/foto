@@ -84,7 +84,7 @@ public class CameraActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
         if (id == R.id.action_map) {
-            Intent intent = new Intent(CameraActivity.this, MainActivity.class);
+            Intent intent = new Intent(CameraActivity.this, MapActivity.class);
             startActivity(intent);
             return true;
         }

@@ -163,7 +163,7 @@ public class SaveFoto extends AppCompatActivity implements GoogleApiClient.Conne
     public void saveFotoToFirebase(Fotos fotos) {
         mActiveRef.child("photos").push().setValue(fotos);
         Toast.makeText(getApplicationContext(), "Foto is saved", Toast.LENGTH_SHORT).show();
-        Intent intent = new Intent(SaveFoto.this, MainActivity.class);
+        Intent intent = new Intent(SaveFoto.this, MapActivity.class);
         startActivity(intent);
     }
 }

@@ -43,12 +43,12 @@ import com.seacam.fotofind.models.Fotos;
 
 import info.androidhive.locationapi.R;
 
-public class MainActivity extends AppCompatActivity
+public class MapActivity extends AppCompatActivity
         implements OnMapReadyCallback,
         GoogleApiClient.ConnectionCallbacks,
         GoogleApiClient.OnConnectionFailedListener {
 
-    private static final String TAG = MainActivity.class.getSimpleName();
+    private static final String TAG = MapActivity.class.getSimpleName();
     private GoogleMap mMap;
     private CameraPosition mCameraPosition;
     private DatabaseReference refDatabase;
@@ -162,7 +162,7 @@ public class MainActivity extends AppCompatActivity
 //        }
         int id = item.getItemId();
         if (id == R.id.action_foto) {
-            Intent intent = new Intent(MainActivity.this, CameraActivity.class);
+            Intent intent = new Intent(MapActivity.this, CameraActivity.class);
             startActivity(intent);
             return true;
         }

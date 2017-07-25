@@ -27,7 +27,7 @@
             android:value="AIzaSyAntqtE_pgkMcxKeX_Vqc7SILImaORqmx0" />
 
         <activity
-            android:name="com.seacam.fotofind.activity.MainActivity"
+            android:name="com.seacam.fotofind.activity.MapActivity"
             android:label="@string/map_page"
             android:screenOrientation="portrait">
         </activity>
