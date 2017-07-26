@@ -23,7 +23,6 @@ import info.androidhive.locationapi.R;
 
 public class CameraActivity extends AppCompatActivity implements View.OnClickListener{
     private static final int REQUEST_IMAGE_CAPTURE = 111;
-//    private GestureDetectorCompat mDetector;
     private String imageToSave;
 
     @Bind(R.id.clickForPic) TextView mTakeFoto;
@@ -36,8 +35,6 @@ public class CameraActivity extends AppCompatActivity implements View.OnClickLis
         ButterKnife.bind(this);
 
         mTakeFoto.setOnClickListener(this);
-//        mDetector = new GestureDetectorCompat(this, new MyGestureListener());
-
     }
 
     @Override
@@ -46,21 +43,6 @@ public class CameraActivity extends AppCompatActivity implements View.OnClickLis
             onLaunchCamera();
         }
     }
-
-//    @Override
-//    public boolean onTouchEvent(MotionEvent event) {
-//        this.mDetector.onTouchEvent(event);
-//        return super.onTouchEvent(event);
-//    }
-
-//    class MyGestureListener extends GestureDetector.SimpleOnGestureListener {
-//
-//        @Override
-//        public boolean onDown(MotionEvent event) {
-//            onLaunchCamera();
-//            return true;
-//        }
-//    }
 
     public void onLaunchCamera() {
         Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
