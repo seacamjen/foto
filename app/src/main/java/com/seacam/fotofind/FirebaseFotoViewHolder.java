@@ -1,12 +1,17 @@
 package com.seacam.fotofind;
 
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.support.v7.widget.RecyclerView;
+import android.util.Base64;
 import android.view.View;
 import android.widget.ImageView;
 
 import com.seacam.fotofind.models.Fotos;
 import com.squareup.picasso.Picasso;
+
+import java.io.IOException;
 
 import info.androidhive.locationapi.R;
 
@@ -15,9 +20,6 @@ import info.androidhive.locationapi.R;
  */
 
 public class FirebaseFotoViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-    private static final int MAX_WIDTH = 200;
-    private static final int MAX_HEIGHT = 200;
-
     View mView;
     Context mContext;
 
@@ -29,17 +31,23 @@ public class FirebaseFotoViewHolder extends RecyclerView.ViewHolder implements V
     }
 
     public void bindFoto(Fotos fotos) {
-        ImageView fotoTaken = (ImageView) mView.findViewById(R.id.fotoImage);
+        ImageView fotoTaken = (ImageView) mView.findViewById(R.id.foto_image);
 
-        Picasso.with(mContext)
-                .load(fotos.getImage())
-                .resize(MAX_WIDTH, MAX_HEIGHT)
-                .centerCrop()
-                .into(fotoTaken);
+        try {
+            Bitmap imageBitmap = decodeFromFirebaseBase64(fotos.getImage());
+            fotoTaken.setImageBitmap(imageBitmap);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
     public void onClick(View v) {
 
+    }
+
+    public static Bitmap decodeFromFirebaseBase64(String image) throws IOException {
+        byte[] decodedByteArray = Base64.decode(image, Base64.DEFAULT);
+        return BitmapFactory.decodeByteArray(decodedByteArray, 0, decodedByteArray.length);
     }
 }
