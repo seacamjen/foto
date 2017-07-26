@@ -34,18 +34,21 @@
             android:name="com.seacam.fotofind.activity.CameraActivity"
             android:label="@string/app_name"
             android:screenOrientation="portrait">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity android:name="com.seacam.fotofind.activity.SaveFoto">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.seacam.fotofind.activity.CameraActivity" />
         </activity>
-        <activity android:name="com.seacam.fotofind.activity.SavedFotosList"></activity>
+        <activity android:name="com.seacam.fotofind.activity.SavedFotosList"
+            android:label="@string/fotos_list_page">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>
