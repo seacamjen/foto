@@ -47,7 +47,12 @@ public class FirebaseFotoViewHolder extends RecyclerView.ViewHolder implements V
     }
 
     public static Bitmap decodeFromFirebaseBase64(String image) throws IOException {
-        byte[] decodedByteArray = Base64.decode(image, Base64.DEFAULT);
-        return BitmapFactory.decodeByteArray(decodedByteArray, 0, decodedByteArray.length);
+        try {
+            byte[] decodedByteArray = Base64.decode(image, Base64.DEFAULT);
+            return BitmapFactory.decodeByteArray(decodedByteArray, 0, decodedByteArray.length);
+        } catch (IllegalArgumentException e) {
+            e.printStackTrace();
+        }
+        return (Bitmap) null;
     }
 }
