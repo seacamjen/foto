@@ -11,6 +11,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
+import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.common.ConnectionResult;
@@ -21,12 +23,12 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.seacam.fotofind.models.Fotos;
 
+import butterknife.Bind;
+import butterknife.ButterKnife;
 import info.androidhive.locationapi.R;
 
-public class SaveFoto extends AppCompatActivity implements GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener {
+public class SaveFoto extends AppCompatActivity implements GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener, View.OnClickListener {
     private DatabaseReference mActiveRef;
-
-    private GestureDetectorCompat mDetector;
 
     private double latitude;
     private double longitude;
@@ -40,6 +42,7 @@ public class SaveFoto extends AppCompatActivity implements GoogleApiClient.Conne
     private Location mLastLocation;
 
     private GoogleApiClient mGoogleApiClient;
+    @Bind(R.id.saveFoto) TextView mSaveFoto;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,7 +52,7 @@ public class SaveFoto extends AppCompatActivity implements GoogleApiClient.Conne
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_save_foto);
-        mDetector = new GestureDetectorCompat(this, new MyGestureListener());
+        ButterKnife.bind(this);
 
         if (checkPlayServices()) {
             buildGoogleApiClient();
@@ -57,6 +60,8 @@ public class SaveFoto extends AppCompatActivity implements GoogleApiClient.Conne
 
         Intent intent = getIntent();
         foto = intent.getStringExtra("foto");
+
+        mSaveFoto.setOnClickListener(this);
     }
 
     //begin location
@@ -140,15 +145,8 @@ public class SaveFoto extends AppCompatActivity implements GoogleApiClient.Conne
     //end of location
 
     @Override
-    public boolean onTouchEvent(MotionEvent event) {
-        this.mDetector.onTouchEvent(event);
-        return super.onTouchEvent(event);
-    }
-
-    class MyGestureListener extends GestureDetector.SimpleOnGestureListener {
-
-        @Override
-        public boolean onDown(MotionEvent event) {
+    public void onClick(View v) {
+        if (v == mSaveFoto) {
             double lat = latitude;
             double longi = longitude;
             long currentTime = time;
@@ -156,7 +154,6 @@ public class SaveFoto extends AppCompatActivity implements GoogleApiClient.Conne
 
             Fotos fotos = new Fotos(lat, longi, currentTime, pics);
             saveFotoToFirebase(fotos);
-            return true;
         }
     }
 
