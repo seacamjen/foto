@@ -2,6 +2,7 @@ package com.seacam.fotofind.activity;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -52,6 +53,7 @@ public class SavedFotosList extends AppCompatActivity {
     }
 
     private void setUpFirebaseAdapter() {
+        int numberOfColumns = 3;
         mFirebaseAdapter = new FirebaseRecyclerAdapter<Fotos, FirebaseFotoViewHolder>(Fotos.class, R.layout.foto_list_item, FirebaseFotoViewHolder.class, mFotosRef) {
             @Override
             protected void populateViewHolder(FirebaseFotoViewHolder viewHolder, Fotos model, int position) {
@@ -59,7 +61,7 @@ public class SavedFotosList extends AppCompatActivity {
             }
         };
         mRecyclerView.setHasFixedSize(true);
-        mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+        mRecyclerView.setLayoutManager(new GridLayoutManager(this, numberOfColumns));
         mRecyclerView.setAdapter(mFirebaseAdapter);
     }
 
