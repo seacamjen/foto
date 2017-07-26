@@ -12,39 +12,55 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.MotionEvent;
+import android.view.View;
+import android.widget.TextView;
 
 import java.io.ByteArrayOutputStream;
 
+import butterknife.Bind;
+import butterknife.ButterKnife;
 import info.androidhive.locationapi.R;
 
-public class CameraActivity extends AppCompatActivity {
+public class CameraActivity extends AppCompatActivity implements View.OnClickListener{
     private static final int REQUEST_IMAGE_CAPTURE = 111;
-    private GestureDetectorCompat mDetector;
+//    private GestureDetectorCompat mDetector;
     private String imageToSave;
+
+    @Bind(R.id.clickForPic) TextView mTakeFoto;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_camera);
-        mDetector = new GestureDetectorCompat(this, new MyGestureListener());
+        ButterKnife.bind(this);
+
+        mTakeFoto.setOnClickListener(this);
+//        mDetector = new GestureDetectorCompat(this, new MyGestureListener());
 
     }
 
     @Override
-    public boolean onTouchEvent(MotionEvent event) {
-        this.mDetector.onTouchEvent(event);
-        return super.onTouchEvent(event);
-    }
-
-    class MyGestureListener extends GestureDetector.SimpleOnGestureListener {
-
-        @Override
-        public boolean onDown(MotionEvent event) {
+    public void onClick(View v) {
+        if(v == mTakeFoto) {
             onLaunchCamera();
-            return true;
         }
     }
+
+//    @Override
+//    public boolean onTouchEvent(MotionEvent event) {
+//        this.mDetector.onTouchEvent(event);
+//        return super.onTouchEvent(event);
+//    }
+
+//    class MyGestureListener extends GestureDetector.SimpleOnGestureListener {
+//
+//        @Override
+//        public boolean onDown(MotionEvent event) {
+//            onLaunchCamera();
+//            return true;
+//        }
+//    }
 
     public void onLaunchCamera() {
         Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
