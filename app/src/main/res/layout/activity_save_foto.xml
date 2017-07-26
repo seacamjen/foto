@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/btn_bg"
+    android:background="@color/colorAccent"
     tools:context="com.seacam.fotofind.activity.SaveFoto">
 
     <TextView
@@ -17,7 +17,7 @@
         android:layout_marginTop="8dp"
         android:text="Save your Foto!"
         android:textSize="30dp"
-        android:textColor="@color/colorAccent"
+        android:textColor="@color/colorPrimary"
         android:textAlignment="center"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
