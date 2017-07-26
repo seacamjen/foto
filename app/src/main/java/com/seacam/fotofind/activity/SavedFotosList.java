@@ -7,8 +7,11 @@ import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.seacam.fotofind.FirebaseFotoViewHolder;
 import com.seacam.fotofind.models.Fotos;
 
@@ -24,12 +27,26 @@ public class SavedFotosList extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        mFotosRef = FirebaseDatabase.getInstance().getReference().child("photos");
+
+        mFotosRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                for (DataSnapshot foto : dataSnapshot.getChildren()) {
+                    String fotos = foto.child("image").getValue().toString();
+                    Log.d("Foto updated", "Foto: " + fotos);
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_saved_fotos_list);
         ButterKnife.bind(this);
-
-        mFotosRef = FirebaseDatabase.getInstance().getReference("photos").child("image");
-        Log.i("Firebase", mFotosRef.toString());
 
         setUpFirebaseAdapter();
     }
