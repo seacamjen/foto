@@ -7,4 +7,10 @@
         app:showAsAction="ifRoom"
         android:icon="@drawable/ic_photo_camera_black_24dp">
     </item>
+    <item
+        android:id="@+id/action_collection"
+        android:title="Go To Collection"
+        app:showAsAction="ifRoom"
+        android:icon="@drawable/ic_collections_black_24dp">
+    </item>
 </menu>

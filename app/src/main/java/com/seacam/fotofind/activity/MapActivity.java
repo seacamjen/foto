@@ -166,6 +166,10 @@ public class MapActivity extends AppCompatActivity
             startActivity(intent);
             return true;
         }
+        if (id == R.id.action_collection) {
+            Intent intent = new Intent(MapActivity.this, SavedFotosList.class);
+            startActivity(intent);
+        }
         return super.onOptionsItemSelected(item);
     }
 
