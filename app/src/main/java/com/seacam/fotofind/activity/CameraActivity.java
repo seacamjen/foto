@@ -83,6 +83,10 @@ public class CameraActivity extends AppCompatActivity implements View.OnClickLis
             startActivity(intent);
             return true;
         }
+        if (id == R.id.action_collection) {
+            Intent intent = new Intent(CameraActivity.this, SavedFotosList.class);
+            startActivity(intent);
+        }
         return super.onOptionsItemSelected(item);
     }
 
