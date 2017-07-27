@@ -11,7 +11,7 @@ import butterknife.ButterKnife;
 import info.androidhive.locationapi.R;
 
 public class LoginActivity extends AppCompatActivity implements View.OnClickListener{
-    @Bind(R.id.registerTextView) TextView mRegisterTextView;
+    @Bind(R.id.registerLoginText) TextView mRegisterTextView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
