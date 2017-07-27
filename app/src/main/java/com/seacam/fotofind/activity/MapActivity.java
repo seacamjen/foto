@@ -436,28 +436,4 @@ public class MapActivity extends AppCompatActivity
             mLastKnownLocation = null;
         }
     }
-
-    //pop up
-
-//    public void showPopUp(View v) {
-//        LinearLayout mainLayout = (LinearLayout) findViewById(R.id.activity_main_layout);
-//
-//        LayoutInflater inflater = (LayoutInflater) getSystemService(LAYOUT_INFLATER_SERVICE);
-//        View popupView = inflater.inflate(R.layout.foto_list_item, null);
-//
-//        int width = LinearLayout.LayoutParams.WRAP_CONTENT;
-//        int height = LinearLayout.LayoutParams.WRAP_CONTENT;
-//        boolean focusable = true;
-//        final PopupWindow popupWindow = new PopupWindow(popupView, width, height, focusable);
-//
-//        popupWindow.showAtLocation(mainLayout, Gravity.CENTER, 0, 0);
-//
-//        popupView.setOnTouchListener(new View.OnTouchListener() {
-//            @Override
-//            public boolean onTouch(View v, MotionEvent event) {
-//                popupWindow.dismiss();
-//                return true;
-//            }
-//        });
-//    }
 }
