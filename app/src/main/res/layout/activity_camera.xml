@@ -13,6 +13,7 @@
         android:layout_height="74dp"
         android:text="Take Your Foto!"
         android:textSize="30dp"
+        android:textStyle="bold"
         android:textColor="@color/colorPrimary"
         android:textAlignment="center"
         app:layout_constraintTop_toTopOf="parent"
