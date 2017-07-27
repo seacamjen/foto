@@ -47,8 +47,9 @@
         </activity>
         <activity
             android:name="com.seacam.fotofind.activity.SavedFotosList"
-            android:label="@string/fotos_list_page"></activity>
-        <activity android:name="com.seacam.fotofind.activity.CreateAccount"></activity>
+            android:label="@string/fotos_list_page" />
+        <activity android:name="com.seacam.fotofind.activity.CreateAccount" />
+        <activity android:name="com.seacam.fotofind.activity.LoginActivity"></activity>
     </application>
 
 </manifest>
