@@ -13,4 +13,10 @@
         app:showAsAction="ifRoom"
         android:icon="@drawable/ic_map_black_24dp">
     </item>
+    <item
+        android:id="@+id/action_exit"
+        android:title="Exit App"
+        app:showAsAction="ifRoom"
+        android:icon="@drawable/ic_exit_to_app_black_24dp">
+    </item>
 </menu>
