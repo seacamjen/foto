@@ -4,4 +4,12 @@
     <string name="fotos_list_page">My Fotos</string>
     <string name="lbl_you_are_at">YOU ARE AT</string>
     <string name="btn_get_location">GET MY LOCATION</string>
+
+    <string name="username">Foto Username</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="confirmPassword">Confirm Password</string>
+    <string name="signUp">Sign Up</string>
+    <string name="existingUser">Login with existing user!</string>
+    <string name="newUser">New Foto User</string>
 </resources>
