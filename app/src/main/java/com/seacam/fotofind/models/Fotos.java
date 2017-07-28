@@ -5,6 +5,7 @@ public class Fotos {
     double longitude;
     long time;
     String image;
+    private String pushId;
 
     public Fotos() {}
 
@@ -29,5 +30,13 @@ public class Fotos {
 
     public String getImage() {
         return image;
+    }
+
+    public String getPushId() {
+        return pushId;
+    }
+
+    public void setPushId(String pushId) {
+        this.pushId = pushId;
     }
 }
