@@ -12,6 +12,7 @@
         android:layout_height="wrap_content"
         android:background="@android:color/white"
         android:hint="Email"
+        android:textAlignment="center"
         android:inputType="textEmailAddress"
         android:nextFocusDown="@+id/passwordEditText"
         android:padding="10dp"
@@ -27,7 +28,7 @@
         app:layout_constraintTop_toTopOf="parent"
         android:layout_marginTop="8dp"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintVertical_bias="0.257" />
+        app:layout_constraintVertical_bias="0.281" />
 
     <EditText
         android:id="@+id/passwordLoginText"
@@ -35,6 +36,7 @@
         android:layout_height="wrap_content"
         android:background="@android:color/white"
         android:hint="Password"
+        android:textAlignment="center"
         android:inputType="textPassword"
         android:nextFocusDown="@+id/passwordEditText"
         android:padding="10dp"
@@ -50,17 +52,18 @@
         app:layout_constraintTop_toTopOf="parent"
         android:layout_marginTop="8dp"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintVertical_bias="0.419" />
+        app:layout_constraintVertical_bias="0.461" />
 
 
     <Button
         android:id="@+id/passwordLoginButton"
-        android:layout_width="88dp"
+        android:layout_width="170dp"
         android:layout_height="wrap_content"
         android:padding="10dp"
-        android:text="Log in"
+        android:text="Login"
+        android:textSize="20dp"
         android:background="@color/colorPrimary"
-        android:textColor="@color/colorAccent"
+        android:textColor="@color/colorBlack"
         android:layout_marginRight="8dp"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -69,15 +72,15 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         android:layout_marginTop="8dp"
-        app:layout_constraintVertical_bias="0.644" />
+        app:layout_constraintVertical_bias="0.713" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textColor="@color/colorPrimaryDark"
+        android:textColor="@color/colorBlack"
         android:textStyle="bold"
-        android:textSize="15sp"
-        android:text="Don't have an account? Sign up here!"
+        android:textSize="17dp"
+        android:text="Create a new account!"
         android:id="@+id/registerLoginText"
         android:layout_gravity="center_horizontal"
         android:layout_marginRight="8dp"
@@ -95,8 +98,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Login"
-        android:textColor="@color/colorPrimaryDark"
-        android:textSize="30dp"
+        android:textColor="@color/colorBlack"
+        android:textSize="40dp"
         android:textStyle="bold"
         android:layout_centerHorizontal="true"
         android:layout_marginRight="8dp"
