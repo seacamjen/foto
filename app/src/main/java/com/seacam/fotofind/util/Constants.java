@@ -6,4 +6,5 @@ package com.seacam.fotofind.util;
 
 public class Constants {
     public static final String FIREBASE_DATABASE_PHOTOS = "photos";
+    public static final String FIREBASE_DATABASE_IMAGE = "image";
 }

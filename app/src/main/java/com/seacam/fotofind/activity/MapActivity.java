@@ -45,6 +45,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.seacam.fotofind.models.Fotos;
+import com.seacam.fotofind.util.Constants;
 
 import java.io.ByteArrayOutputStream;
 
@@ -87,7 +88,7 @@ public class MapActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         String uid = user.getUid();
-        refDatabase = FirebaseDatabase.getInstance().getReference("photos").child(uid);
+        refDatabase = FirebaseDatabase.getInstance().getReference(Constants.FIREBASE_DATABASE_PHOTOS).child(uid);
 
         Log.i(TAG, refDatabase.toString());
 
