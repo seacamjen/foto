@@ -98,9 +98,7 @@ public class SavedFotosList extends AppCompatActivity {
         }
         if (id == R.id.action_foto) {
             onLaunchCamera();
-//            Intent intent = new Intent(SavedFotosList.this, CameraActivity.class);
-//            startActivity(intent);
-//            return true;
+            return true;
         }
         if (id == R.id.action_exit) {
             logout();

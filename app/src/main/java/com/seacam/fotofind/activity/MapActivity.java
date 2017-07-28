@@ -3,13 +3,16 @@ package com.seacam.fotofind.activity;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
 import android.location.Location;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Base64;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -48,12 +51,16 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.seacam.fotofind.models.Fotos;
 
+import java.io.ByteArrayOutputStream;
+
 import info.androidhive.locationapi.R;
 
 public class MapActivity extends AppCompatActivity
         implements OnMapReadyCallback,
         GoogleApiClient.ConnectionCallbacks,
         GoogleApiClient.OnConnectionFailedListener {
+    private static final int REQUEST_IMAGE_CAPTURE = 111;
+    private String imageToSave;
 
     private static final String TAG = MapActivity.class.getSimpleName();
     private GoogleMap mMap;
@@ -171,8 +178,8 @@ public class MapActivity extends AppCompatActivity
 //        }
         int id = item.getItemId();
         if (id == R.id.action_foto) {
-            Intent intent = new Intent(MapActivity.this, SavedFotosList.class);
-            startActivity(intent);
+            onLaunchCamera();
+
             return true;
         }
         if (id == R.id.action_collection) {
@@ -184,6 +191,33 @@ public class MapActivity extends AppCompatActivity
             return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    public void onLaunchCamera() {
+        Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        if (takePictureIntent.resolveActivity(this.getPackageManager()) != null) {
+            startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE);
+        }
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == this.RESULT_OK) {
+            Bundle extras = data.getExtras();
+            Bitmap imageBitmap = (Bitmap) extras.get("data");
+            encodeBitmapAndSaveToFirebase(imageBitmap);
+
+            Intent intent = new Intent(MapActivity.this, SaveFoto.class);
+            intent.putExtra("foto", imageToSave);
+            startActivity(intent);
+        }
+    }
+
+    public void encodeBitmapAndSaveToFirebase(Bitmap bitmap) {
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        bitmap.compress(Bitmap.CompressFormat.PNG, 100, baos);
+        String imageEncoded = Base64.encodeToString(baos.toByteArray(), Base64.DEFAULT);
+        imageToSave = imageEncoded;
     }
 
     private void logout() {
