@@ -15,7 +15,7 @@
         android:layout_marginLeft="8dp"
         android:layout_marginRight="8dp"
         android:layout_marginTop="8dp"
-        android:text="Save your Foto!"
+        android:text="@string/saveFoto"
         android:textSize="30dp"
         android:textStyle="bold"
         android:background="@color/colorPrimary"

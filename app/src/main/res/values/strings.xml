@@ -14,4 +14,5 @@
     <string name="existingUser">Login with existing user!</string>
     <string name="newAccount">Create a new account!</string>
     <string name="newUser">New Foto User</string>
+    <string name="saveFoto">Save your Foto!</string>
 </resources>
