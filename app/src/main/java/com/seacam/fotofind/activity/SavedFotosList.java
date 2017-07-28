@@ -12,6 +12,7 @@ import android.view.MenuItem;
 
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -32,7 +33,10 @@ public class SavedFotosList extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        mFotosRef = FirebaseDatabase.getInstance().getReference().child("photos");
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        String uid = user.getUid();
+
+        mFotosRef = FirebaseDatabase.getInstance().getReference("photos").child(uid);
 
         mFotosRef.addValueEventListener(new ValueEventListener() {
             @Override
