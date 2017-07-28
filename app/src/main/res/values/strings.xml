@@ -10,6 +10,8 @@
     <string name="password">Password</string>
     <string name="confirmPassword">Confirm Password</string>
     <string name="signUp">Sign Up</string>
+    <string name="login">Login</string>
     <string name="existingUser">Login with existing user!</string>
+    <string name="newAccount">Create a new account!</string>
     <string name="newUser">New Foto User</string>
 </resources>
