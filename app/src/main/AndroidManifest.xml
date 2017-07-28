@@ -30,16 +30,10 @@
             android:name="com.seacam.fotofind.activity.MapActivity"
             android:label="@string/map_page"
             android:screenOrientation="portrait" />
-        <activity
-            android:name="com.seacam.fotofind.activity.CameraActivity"
-            android:label="@string/app_name"
-            android:screenOrientation="portrait">
-
-        </activity>
         <activity android:name="com.seacam.fotofind.activity.SaveFoto">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.seacam.fotofind.activity.CameraActivity" />
+                android:value="com.seacam.fotofind.activity.SavedFotosList" />
         </activity>
         <activity
             android:name="com.seacam.fotofind.activity.SavedFotosList"

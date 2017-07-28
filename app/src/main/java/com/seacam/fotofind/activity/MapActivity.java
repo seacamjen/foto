@@ -171,7 +171,7 @@ public class MapActivity extends AppCompatActivity
 //        }
         int id = item.getItemId();
         if (id == R.id.action_foto) {
-            Intent intent = new Intent(MapActivity.this, CameraActivity.class);
+            Intent intent = new Intent(MapActivity.this, SavedFotosList.class);
             startActivity(intent);
             return true;
         }
