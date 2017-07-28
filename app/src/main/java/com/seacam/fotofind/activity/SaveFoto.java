@@ -21,6 +21,7 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.seacam.fotofind.models.Fotos;
+import com.seacam.fotofind.util.Constants;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -160,13 +161,13 @@ public class SaveFoto extends AppCompatActivity implements GoogleApiClient.Conne
     public void saveFotoToFirebase(Fotos fotos) {
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         String uid = user.getUid();
-        DatabaseReference photoRef = FirebaseDatabase.getInstance().getReference("photos").child(uid);
+        DatabaseReference photoRef = FirebaseDatabase.getInstance().getReference(Constants.FIREBASE_DATABASE_PHOTOS).child(uid);
 
         DatabaseReference pushRef = photoRef.push();
         String pushId = pushRef.getKey();
         fotos.setPushId(pushId);
         pushRef.setValue(fotos);
-        Toast.makeText(getApplicationContext(), "Foto is saved", Toast.LENGTH_SHORT).show();
+        Toast.makeText(getApplicationContext(), "Foto saved", Toast.LENGTH_SHORT).show();
         Intent intent = new Intent(SaveFoto.this, MapActivity.class);
         startActivity(intent);
     }
