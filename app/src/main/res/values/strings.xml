@@ -19,4 +19,5 @@
     <string name="takeFoto">Take Foto</string>
     <string name="viewCollection">View Foto Collection</string>
     <string name="exit">Exit Foto</string>
+    <string name="viewMap">Go To Map</string>
 </resources>

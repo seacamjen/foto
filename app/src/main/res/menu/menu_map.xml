@@ -3,19 +3,19 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
         android:id="@+id/action_map"
-        android:title="Go To Map"
+        android:title="@string/viewMap"
         app:showAsAction="ifRoom"
         android:icon="@drawable/ic_map_black_24dp">
     </item>
     <item
         android:id="@+id/action_collection"
-        android:title="Go To Collection"
+        android:title="@string/viewCollection"
         app:showAsAction="ifRoom"
         android:icon="@drawable/ic_collections_black_24dp">
     </item>
     <item
         android:id="@+id/action_exit"
-        android:title="Exit App"
+        android:title="@string/exit"
         app:showAsAction="ifRoom"
         android:icon="@drawable/ic_exit_to_app_black_24dp">
     </item>
