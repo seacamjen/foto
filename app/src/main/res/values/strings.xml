@@ -11,8 +11,12 @@
     <string name="confirmPassword">Confirm Password</string>
     <string name="signUp">Sign Up</string>
     <string name="login">Login</string>
+
     <string name="existingUser">Login with existing user!</string>
     <string name="newAccount">Create a new account!</string>
     <string name="newUser">New Foto User</string>
     <string name="saveFoto">Save your Foto!</string>
+    <string name="takeFoto">Take Foto</string>
+    <string name="viewCollection">View Foto Collection</string>
+    <string name="exit">Exit Foto</string>
 </resources>
