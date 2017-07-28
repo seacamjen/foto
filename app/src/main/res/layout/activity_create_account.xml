@@ -12,7 +12,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:background="@android:color/white"
-        android:hint="Name"
+        android:hint="Foto Username"
         android:nextFocusDown="@+id/passwordEditText"
         android:padding="10dp"
         android:textColor="@android:color/black"
@@ -50,7 +50,7 @@
         app:layout_constraintTop_toTopOf="parent"
         android:layout_marginTop="8dp"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintVertical_bias="0.33" />
+        app:layout_constraintVertical_bias="0.317" />
 
     <EditText
         android:id="@+id/passwordCreateAccount"
@@ -101,12 +101,13 @@
 
     <Button
         android:id="@+id/createUserButton"
-        android:layout_width="88dp"
+        android:layout_width="170dp"
         android:layout_height="wrap_content"
         android:padding="10dp"
         android:text="Sign up"
+        android:textSize="20dp"
         android:background="@color/colorPrimary"
-        android:textColor="@color/colorAccent"
+        android:textColor="@color/colorBlack"
         android:layout_marginRight="8dp"
         app:layout_constraintRight_toRightOf="parent"
         android:layout_marginLeft="8dp"
@@ -120,10 +121,10 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textColor="@color/colorPrimaryDark"
+        android:textColor="@color/colorBlack"
         android:textStyle="bold"
-        android:textSize="15sp"
-        android:text="Already have an account? Log in here!"
+        android:textSize="15dp"
+        android:text="Login with existing user!"
         android:id="@+id/loginFromCreateAccount"
         android:layout_marginRight="8dp"
         app:layout_constraintRight_toRightOf="parent"
@@ -138,8 +139,8 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Create Account"
-        android:textColor="@color/colorPrimaryDark"
+        android:text="New Foto User"
+        android:textColor="@color/colorBlack"
         android:textSize="30dp"
         android:textStyle="bold"
         android:layout_marginLeft="8dp"
