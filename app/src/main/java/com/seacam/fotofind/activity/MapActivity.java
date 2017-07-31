@@ -4,6 +4,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.location.Location;
 import android.os.Bundle;
 import android.provider.MediaStore;
@@ -19,6 +20,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.FrameLayout;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.google.android.gms.common.ConnectionResult;
@@ -48,6 +50,7 @@ import com.seacam.fotofind.models.Fotos;
 import com.seacam.fotofind.util.Constants;
 
 import java.io.ByteArrayOutputStream;
+import java.io.IOException;
 
 import info.androidhive.locationapi.R;
 
@@ -253,8 +256,16 @@ public class MapActivity extends AppCompatActivity
                 TextView title = ((TextView) infoWindow.findViewById(R.id.title));
                 title.setText(marker.getTitle());
 
-                TextView snippet = ((TextView) infoWindow.findViewById(R.id.snippet));
-                snippet.setText(marker.getSnippet());
+                try {
+                    Bitmap imageBitmap = decodeFromFirebaseBase64(marker.getSnippet());
+                    ImageView snippet = ((ImageView) infoWindow.findViewById(R.id.snippet));
+                    snippet.setImageBitmap(imageBitmap);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+
+//                ImageView snippet = ((ImageView) infoWindow.findViewById(R.id.snippet));
+//                snippet.setImageBitmap(imageBitmap);
 
                 return infoWindow;
             }
@@ -275,8 +286,9 @@ public class MapActivity extends AppCompatActivity
                 double latitude = marker.getLatitude();
                 double longitude = marker.getLongitude();
                 long time = marker.getTime();
+                String image = marker.getImage();
                 LatLng location = new LatLng(latitude, longitude);
-                map.addMarker(new MarkerOptions().position(location).title("Yahoo"));
+                map.addMarker(new MarkerOptions().position(location).title("Yahoo").snippet(image));
             }
 
             @Override
@@ -481,5 +493,15 @@ public class MapActivity extends AppCompatActivity
             mMap.getUiSettings().setMyLocationButtonEnabled(false);
             mLastKnownLocation = null;
         }
+    }
+
+    public static Bitmap decodeFromFirebaseBase64(String image) throws IOException {
+        try {
+            byte[] decodedByteArray = Base64.decode(image, Base64.DEFAULT);
+            return BitmapFactory.decodeByteArray(decodedByteArray, 0, decodedByteArray.length);
+        } catch (IllegalArgumentException e) {
+            e.printStackTrace();
+        }
+        return (Bitmap) null;
     }
 }
