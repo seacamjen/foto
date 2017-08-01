@@ -279,10 +279,8 @@ public class MapActivity extends AppCompatActivity
                 double latitude = marker.getLatitude();
                 double longitude = marker.getLongitude();
                 long time = marker.getTime();
-                String image = marker.getImage();
-                Log.i("Image in String", image);
                 LatLng location = new LatLng(latitude, longitude);
-                map.addMarker(new MarkerOptions().position(location).title("Yahoo").snippet(image));
+                map.addMarker(new MarkerOptions().position(location).title("Yahoo"));
             }
 
             @Override
