@@ -46,6 +46,7 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.seacam.fotofind.models.Fotos;
 import com.seacam.fotofind.util.Constants;
 
@@ -66,6 +67,7 @@ public class MapActivity extends AppCompatActivity
     private CameraPosition mCameraPosition;
     private DatabaseReference refDatabase;
     private ChildEventListener mChildEventListener;
+    private String uid;
 
     private GoogleApiClient mGoogleApiClient;
 
@@ -90,7 +92,7 @@ public class MapActivity extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-        String uid = user.getUid();
+        uid = user.getUid();
         refDatabase = FirebaseDatabase.getInstance().getReference(Constants.FIREBASE_DATABASE_PHOTOS).child(uid);
 
         Log.i(TAG, refDatabase.toString());
@@ -331,6 +333,31 @@ public class MapActivity extends AppCompatActivity
             mLastKnownLocation = LocationServices.FusedLocationApi
                     .getLastLocation(mGoogleApiClient);
         }
+        final Double findLat = mLastKnownLocation.getLatitude();
+        final Double findLong = mLastKnownLocation.getLongitude();
+
+        DatabaseReference locationRef = refDatabase;
+        locationRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                for (DataSnapshot value: dataSnapshot.getChildren()) {
+                    Double latitude = value.child("latitude").getValue(Double.class);
+                    Double longitude = value.child("longitude").getValue(Double.class);
+
+                    if (latitude.equals(findLat) && longitude.equals(findLong)) {
+                        Intent intent = new Intent(MapActivity.this, SavedFotosList.class);
+                        startActivity(intent);
+                    }
+                }
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
 
         // Set the map's camera position to the current location of the device.
         if (mCameraPosition != null) {
