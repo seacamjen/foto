@@ -68,8 +68,6 @@ public class ShowFoto extends AppCompatActivity implements GoogleApiClient.Conne
         ButterKnife.bind(this);
 
         mFotosRef = FirebaseDatabase.getInstance().getReference(Constants.FIREBASE_DATABASE_PHOTOS).child(uid);
-
-//        setUpFirebaseAdapter();
     }
 
     //begin location services
