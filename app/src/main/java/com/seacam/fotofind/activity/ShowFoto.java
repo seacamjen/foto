@@ -38,13 +38,7 @@ public class ShowFoto extends AppCompatActivity {
         setContentView(R.layout.activity_saved_fotos_list);
         ButterKnife.bind(this);
 
-        Intent intent = getIntent();
-        Double longitude = intent.getDoubleExtra("longitude", 0);
-        Double latitude = intent.getDoubleExtra("latitude", 0);
-
-        String longitudes = longitude.toString();
-
-        mFotosRef = FirebaseDatabase.getInstance().getReference(Constants.FIREBASE_DATABASE_PHOTOS).child(uid).child(longitudes);
+        mFotosRef = FirebaseDatabase.getInstance().getReference(Constants.FIREBASE_DATABASE_PHOTOS).child(uid);
 
         setUpFirebaseAdapter();
     }

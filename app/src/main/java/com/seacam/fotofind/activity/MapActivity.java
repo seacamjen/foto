@@ -360,8 +360,6 @@ public class MapActivity extends AppCompatActivity
 
                     if (latitude.equals(findLat) && longitude.equals(findLong)) {
                         Intent intent = new Intent(MapActivity.this, ShowFoto.class);
-                        intent.putExtra("Latitude", latitude);
-                        intent.putExtra("Longitude", longitude);
                         startActivity(intent);
                     }
                 }
