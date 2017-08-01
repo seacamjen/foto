@@ -333,31 +333,6 @@ public class MapActivity extends AppCompatActivity
             mLastKnownLocation = LocationServices.FusedLocationApi
                     .getLastLocation(mGoogleApiClient);
         }
-        final Double findLat = mLastKnownLocation.getLatitude();
-        final Double findLong = mLastKnownLocation.getLongitude();
-
-        DatabaseReference locationRef = refDatabase;
-        locationRef.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                for (DataSnapshot value: dataSnapshot.getChildren()) {
-                    Double latitude = value.child("latitude").getValue(Double.class);
-                    Double longitude = value.child("longitude").getValue(Double.class);
-
-                    if (latitude.equals(findLat) && longitude.equals(findLong)) {
-                        Intent intent = new Intent(MapActivity.this, SavedFotosList.class);
-                        startActivity(intent);
-                    }
-                }
-
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-
-            }
-        });
-
 
         // Set the map's camera position to the current location of the device.
         if (mCameraPosition != null) {
@@ -371,6 +346,33 @@ public class MapActivity extends AppCompatActivity
             mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(mDefaultLocation, DEFAULT_ZOOM));
             mMap.getUiSettings().setMyLocationButtonEnabled(false);
         }
+
+        final Double findLat = mLastKnownLocation.getLatitude();
+        final Double findLong = mLastKnownLocation.getLongitude();
+
+        DatabaseReference locationRef = refDatabase;
+        locationRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                for (DataSnapshot value: dataSnapshot.getChildren()) {
+                    Double latitude = value.child("latitude").getValue(Double.class);
+                    Double longitude = value.child("longitude").getValue(Double.class);
+
+                    if (latitude.equals(findLat) && longitude.equals(findLong)) {
+                        Intent intent = new Intent(MapActivity.this, ShowFoto.class);
+                        intent.putExtra("Latitude", latitude);
+                        intent.putExtra("Longitude", longitude);
+                        startActivity(intent);
+                    }
+                }
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
 
 
     }
