@@ -47,20 +47,20 @@ public class SavedFotosList extends AppCompatActivity {
 
         mFotosRef = FirebaseDatabase.getInstance().getReference(Constants.FIREBASE_DATABASE_PHOTOS).child(uid);
 
-        mFotosRef.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                for (DataSnapshot foto : dataSnapshot.getChildren()) {
-                    String fotos = foto.child(Constants.FIREBASE_DATABASE_IMAGE).getValue().toString();
-                    Log.d("Foto updated", "Foto: " + fotos);
-                }
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-
-            }
-        });
+//        mFotosRef.addValueEventListener(new ValueEventListener() {
+//            @Override
+//            public void onDataChange(DataSnapshot dataSnapshot) {
+//                for (DataSnapshot foto : dataSnapshot.getChildren()) {
+//                    String fotos = foto.child(Constants.FIREBASE_DATABASE_IMAGE).getValue().toString();
+//                    Log.d("Foto updated", "Foto: " + fotos);
+//                }
+//            }
+//
+//            @Override
+//            public void onCancelled(DatabaseError databaseError) {
+//
+//            }
+//        });
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_saved_fotos_list);

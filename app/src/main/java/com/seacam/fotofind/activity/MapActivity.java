@@ -344,6 +344,8 @@ public class MapActivity extends AppCompatActivity
             mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(mDefaultLocation, DEFAULT_ZOOM));
             mMap.getUiSettings().setMyLocationButtonEnabled(false);
         }
+
+
     }
 
     /**
