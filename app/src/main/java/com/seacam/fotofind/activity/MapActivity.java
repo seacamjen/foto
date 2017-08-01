@@ -341,12 +341,15 @@ public class MapActivity extends AppCompatActivity
             mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(
                     new LatLng(mLastKnownLocation.getLatitude(),
                             mLastKnownLocation.getLongitude()), DEFAULT_ZOOM));
+            viewImagesNow();
         } else {
             Log.d(TAG, "Current location is null. Using defaults.");
             mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(mDefaultLocation, DEFAULT_ZOOM));
             mMap.getUiSettings().setMyLocationButtonEnabled(false);
         }
+    }
 
+    private void viewImagesNow() {
         final Double findLat = mLastKnownLocation.getLatitude();
         final Double findLong = mLastKnownLocation.getLongitude();
 
@@ -371,8 +374,6 @@ public class MapActivity extends AppCompatActivity
 
             }
         });
-
-
     }
 
     /**
