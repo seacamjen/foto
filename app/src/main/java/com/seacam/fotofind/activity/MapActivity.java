@@ -257,8 +257,8 @@ public class MapActivity extends AppCompatActivity
                 title.setText(marker.getTitle());
 
 
-                TextView snippet = ((TextView) infoWindow.findViewById(R.id.snippet));
-                snippet.setText(marker.getSnippet());
+//                TextView snippet = ((TextView) infoWindow.findViewById(R.id.snippet));
+//                snippet.setText(marker.getSnippet());
 
                 return infoWindow;
             }
