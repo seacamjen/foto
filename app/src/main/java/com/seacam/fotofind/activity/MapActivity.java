@@ -256,16 +256,9 @@ public class MapActivity extends AppCompatActivity
                 TextView title = ((TextView) infoWindow.findViewById(R.id.title));
                 title.setText(marker.getTitle());
 
-                try {
-                    Bitmap imageBitmap = decodeFromFirebaseBase64(marker.getSnippet());
-                    ImageView snippet = ((ImageView) infoWindow.findViewById(R.id.snippet));
-                    snippet.setImageBitmap(imageBitmap);
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
 
-//                ImageView snippet = ((ImageView) infoWindow.findViewById(R.id.snippet));
-//                snippet.setImageBitmap(imageBitmap);
+                TextView snippet = ((TextView) infoWindow.findViewById(R.id.snippet));
+                snippet.setText(marker.getSnippet());
 
                 return infoWindow;
             }
@@ -287,6 +280,7 @@ public class MapActivity extends AppCompatActivity
                 double longitude = marker.getLongitude();
                 long time = marker.getTime();
                 String image = marker.getImage();
+                Log.i("Image in String", image);
                 LatLng location = new LatLng(latitude, longitude);
                 map.addMarker(new MarkerOptions().position(location).title("Yahoo").snippet(image));
             }
