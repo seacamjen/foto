@@ -19,6 +19,7 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -53,12 +54,14 @@ import com.seacam.fotofind.util.Constants;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 
+import butterknife.Bind;
+import butterknife.ButterKnife;
 import info.androidhive.locationapi.R;
 
 public class MapActivity extends AppCompatActivity
         implements OnMapReadyCallback,
         GoogleApiClient.ConnectionCallbacks,
-        GoogleApiClient.OnConnectionFailedListener {
+        GoogleApiClient.OnConnectionFailedListener, View.OnClickListener {
     private static final int REQUEST_IMAGE_CAPTURE = 111;
     private String imageToSave;
 
@@ -91,6 +94,7 @@ public class MapActivity extends AppCompatActivity
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        ButterKnife.bind(this);
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         uid = user.getUid();
         refDatabase = FirebaseDatabase.getInstance().getReference(Constants.FIREBASE_DATABASE_PHOTOS).child(uid);
@@ -113,6 +117,17 @@ public class MapActivity extends AppCompatActivity
                 .addApi(Places.PLACE_DETECTION_API)
                 .build();
         mGoogleApiClient.connect();
+
+//        mGoToFotos.setOnClickListener(this);
+//        mGoToFotos.setVisibility(View.INVISIBLE);
+    }
+
+    @Override
+    public void onClick(View v) {
+//        if (v == mGoToFotos) {
+//            Intent intent = new Intent(MapActivity.this, ShowFoto.class);
+//            startActivity(intent);
+//        }
     }
 
     /**
@@ -364,6 +379,7 @@ public class MapActivity extends AppCompatActivity
                     if (latitude.equals(findLat) && longitude.equals(findLong)) {
                         Intent intent = new Intent(MapActivity.this, ShowFoto.class);
                         startActivity(intent);
+//                        mGoToFotos.setVisibility(View.VISIBLE);
                     }
                 }
 
