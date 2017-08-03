@@ -71,6 +71,7 @@ public class MapActivity extends AppCompatActivity
     private DatabaseReference refDatabase;
     private ChildEventListener mChildEventListener;
     private String uid;
+    private Button mGoToFotos;
 
     private GoogleApiClient mGoogleApiClient;
 
@@ -118,16 +119,18 @@ public class MapActivity extends AppCompatActivity
                 .build();
         mGoogleApiClient.connect();
 
-//        mGoToFotos.setOnClickListener(this);
-//        mGoToFotos.setVisibility(View.INVISIBLE);
+        mGoToFotos = (Button) findViewById(R.id.map_see_foto);
+
+        mGoToFotos.setOnClickListener(this);
+        mGoToFotos.setVisibility(View.INVISIBLE);
     }
 
     @Override
     public void onClick(View v) {
-//        if (v == mGoToFotos) {
-//            Intent intent = new Intent(MapActivity.this, ShowFoto.class);
-//            startActivity(intent);
-//        }
+        if (v == mGoToFotos) {
+            Intent intent = new Intent(MapActivity.this, ShowFoto.class);
+            startActivity(intent);
+        }
     }
 
     /**
@@ -377,9 +380,9 @@ public class MapActivity extends AppCompatActivity
                     Double longitude = value.child("longitude").getValue(Double.class);
 
                     if (latitude.equals(findLat) && longitude.equals(findLong)) {
-                        Intent intent = new Intent(MapActivity.this, ShowFoto.class);
-                        startActivity(intent);
-//                        mGoToFotos.setVisibility(View.VISIBLE);
+//                        Intent intent = new Intent(MapActivity.this, ShowFoto.class);
+//                        startActivity(intent);
+                        mGoToFotos.setVisibility(View.VISIBLE);
                     }
                 }
 
