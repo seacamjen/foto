@@ -129,6 +129,7 @@ public class MapActivity extends AppCompatActivity
     public void onClick(View v) {
         if (v == mGoToFotos) {
             Intent intent = new Intent(MapActivity.this, ShowFoto.class);
+            intent.putExtra("latitude", mLastKnownLocation.getLatitude());
             startActivity(intent);
         }
     }

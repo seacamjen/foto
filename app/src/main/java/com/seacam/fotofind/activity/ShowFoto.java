@@ -25,6 +25,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 import com.seacam.fotofind.FirebaseFotoViewHolder;
 import com.seacam.fotofind.models.Fotos;
 import com.seacam.fotofind.util.Constants;
@@ -44,10 +45,12 @@ public class ShowFoto extends AppCompatActivity implements GoogleApiClient.Conne
 
     private String latitude;
     private String longitude;
+    private Double lats;
 
     private GoogleApiClient mGoogleApiClient;
     private final static int PLAY_SERVICES_RESOLUTION_REQUEST = 1000;
     private Location mLastLocation;
+    private Query query;
 
     private boolean mLocationPermissionGranted;
     private static final int PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION = 1;
@@ -63,11 +66,16 @@ public class ShowFoto extends AppCompatActivity implements GoogleApiClient.Conne
             buildGoogleApiClient();
         }
 
+        Intent intent = this.getIntent();
+        lats = intent.getDoubleExtra("latitude", 0);
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.close_fotos_only);
         ButterKnife.bind(this);
 
         mFotosRef = FirebaseDatabase.getInstance().getReference(Constants.FIREBASE_DATABASE_PHOTOS).child(uid);
+
+        query = mFotosRef.child("latitude").equalTo(lats);
     }
 
     //begin location services
@@ -166,7 +174,7 @@ public class ShowFoto extends AppCompatActivity implements GoogleApiClient.Conne
 
     private void setUpFirebaseAdapter() {
         int numberOfColumns = 1;
-        mFirebaseAdapter = new FirebaseRecyclerAdapter<Fotos, FirebaseFotoViewHolder>(Fotos.class, R.layout.foto_list_item, FirebaseFotoViewHolder.class, mFotosRef) {
+        mFirebaseAdapter = new FirebaseRecyclerAdapter<Fotos, FirebaseFotoViewHolder>(Fotos.class, R.layout.foto_list_item, FirebaseFotoViewHolder.class, query) {
             @Override
             protected void populateViewHolder(FirebaseFotoViewHolder viewHolder, Fotos model, int position) {
                 viewHolder.bindFoto(model);
