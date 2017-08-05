@@ -53,6 +53,7 @@ import com.seacam.fotofind.util.Constants;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.util.ArrayList;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -72,6 +73,7 @@ public class MapActivity extends AppCompatActivity
     private ChildEventListener mChildEventListener;
     private String uid;
     private Button mGoToFotos;
+    public String pushId;
 
     private GoogleApiClient mGoogleApiClient;
 
@@ -129,7 +131,7 @@ public class MapActivity extends AppCompatActivity
     public void onClick(View v) {
         if (v == mGoToFotos) {
             Intent intent = new Intent(MapActivity.this, ShowFoto.class);
-            intent.putExtra("latitude", mLastKnownLocation.getLatitude());
+            intent.putExtra("ID_LIST", pushId);
             startActivity(intent);
         }
     }
@@ -381,8 +383,8 @@ public class MapActivity extends AppCompatActivity
                     Double longitude = value.child("longitude").getValue(Double.class);
 
                     if (latitude.equals(findLat) && longitude.equals(findLong)) {
-//                        Intent intent = new Intent(MapActivity.this, ShowFoto.class);
-//                        startActivity(intent);
+                        String key = value.child("pushId").getValue(String.class);
+                        pushId = key;
                         mGoToFotos.setVisibility(View.VISIBLE);
                     }
                 }
