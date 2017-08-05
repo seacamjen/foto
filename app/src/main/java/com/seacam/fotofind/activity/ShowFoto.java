@@ -67,8 +67,7 @@ public class ShowFoto extends AppCompatActivity implements GoogleApiClient.Conne
             buildGoogleApiClient();
         }
 
-        Intent intent = this.getIntent();
-        listItems = intent.getStringExtra("ID_LIST");
+        listItems = getIntent().getStringExtra("ID_LIST");
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.close_fotos_only);
