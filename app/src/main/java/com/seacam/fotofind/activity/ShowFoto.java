@@ -47,7 +47,6 @@ public class ShowFoto extends AppCompatActivity implements GoogleApiClient.Conne
     private static final String TAG = SaveFoto.class.getSimpleName();
 
     private Double latitude;
-    private Double longitude;
     private String listItems;
 
     private GoogleApiClient mGoogleApiClient;
@@ -66,8 +65,6 @@ public class ShowFoto extends AppCompatActivity implements GoogleApiClient.Conne
         if (checkPlayServices()) {
             buildGoogleApiClient();
         }
-
-//        listItems = getIntent().getStringExtra("ID_LIST");
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.close_fotos_only);
@@ -93,7 +90,6 @@ public class ShowFoto extends AppCompatActivity implements GoogleApiClient.Conne
 
             if (mLastLocation != null) {
                 latitude = mLastLocation.getLatitude();
-                longitude = mLastLocation.getLongitude();
             } else {
                 //log something?
             }
