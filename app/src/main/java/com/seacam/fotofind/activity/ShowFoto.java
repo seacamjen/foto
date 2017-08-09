@@ -67,13 +67,13 @@ public class ShowFoto extends AppCompatActivity implements GoogleApiClient.Conne
             buildGoogleApiClient();
         }
 
-        listItems = getIntent().getStringExtra("ID_LIST");
+//        listItems = getIntent().getStringExtra("ID_LIST");
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.close_fotos_only);
         ButterKnife.bind(this);
 
-        mFotosRef = FirebaseDatabase.getInstance().getReference(Constants.FIREBASE_DATABASE_PHOTOS).child(uid).child(listItems);
+        mFotosRef = FirebaseDatabase.getInstance().getReference(Constants.FIREBASE_DATABASE_PHOTOS).child(uid);
     }
 
     //begin location services
