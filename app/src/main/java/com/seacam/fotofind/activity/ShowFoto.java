@@ -43,10 +43,11 @@ import info.androidhive.locationapi.R;
 public class ShowFoto extends AppCompatActivity implements GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener {
     private DatabaseReference mFotosRef;
     private FirebaseRecyclerAdapter mFirebaseAdapter;
+    private FirebaseUser user;
     private static final String TAG = SaveFoto.class.getSimpleName();
 
-    private String latitude;
-    private String longitude;
+    private Double latitude;
+    private Double longitude;
     private String listItems;
 
     private GoogleApiClient mGoogleApiClient;
@@ -60,8 +61,7 @@ public class ShowFoto extends AppCompatActivity implements GoogleApiClient.Conne
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-        String uid = user.getUid();
+        user = FirebaseAuth.getInstance().getCurrentUser();
 
         if (checkPlayServices()) {
             buildGoogleApiClient();
@@ -73,7 +73,7 @@ public class ShowFoto extends AppCompatActivity implements GoogleApiClient.Conne
         setContentView(R.layout.close_fotos_only);
         ButterKnife.bind(this);
 
-        mFotosRef = FirebaseDatabase.getInstance().getReference(Constants.FIREBASE_DATABASE_PHOTOS).child(uid);
+
     }
 
     //begin location services
@@ -92,8 +92,8 @@ public class ShowFoto extends AppCompatActivity implements GoogleApiClient.Conne
             mLastLocation = LocationServices.FusedLocationApi.getLastLocation(mGoogleApiClient);
 
             if (mLastLocation != null) {
-                latitude = Double.toString(mLastLocation.getLatitude());
-                longitude = Double.toString(mLastLocation.getLongitude());
+                latitude = mLastLocation.getLatitude();
+                longitude = mLastLocation.getLongitude();
             } else {
                 //log something?
             }
@@ -171,8 +171,10 @@ public class ShowFoto extends AppCompatActivity implements GoogleApiClient.Conne
     }
 
     private void setUpFirebaseAdapter() {
+        String uid = user.getUid();
+        mFotosRef = FirebaseDatabase.getInstance().getReference(Constants.FIREBASE_DATABASE_PHOTOS).child(uid);
         int numberOfColumns = 1;
-        mFirebaseAdapter = new FirebaseRecyclerAdapter<Fotos, FirebaseFotoViewHolder>(Fotos.class, R.layout.foto_list_item, FirebaseFotoViewHolder.class, mFotosRef) {
+        mFirebaseAdapter = new FirebaseRecyclerAdapter<Fotos, FirebaseFotoViewHolder>(Fotos.class, R.layout.foto_list_item, FirebaseFotoViewHolder.class, mFotosRef.orderByChild("latitude").equalTo(latitude)) {
             @Override
             protected void populateViewHolder(FirebaseFotoViewHolder viewHolder, Fotos model, int position) {
                 viewHolder.bindFoto(model);
