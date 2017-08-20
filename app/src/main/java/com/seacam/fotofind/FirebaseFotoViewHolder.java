@@ -15,6 +15,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.seacam.fotofind.activity.ShowFoto;
+import com.seacam.fotofind.activity.SingleImageFragment;
 import com.seacam.fotofind.models.Fotos;
 
 import org.parceler.Parcels;
@@ -59,13 +60,14 @@ public class FirebaseFotoViewHolder extends RecyclerView.ViewHolder implements V
         ref.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
-                    fotoslist.add(snapshot.getValue(Fotos.class));
-                }
+                dataSnapshot.getRef();
+//                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+//                    fotoslist.add(snapshot.getValue(Fotos.class));
+//                }
 
                 int itemPosition = getLayoutPosition();
 
-                Intent intent = new Intent(mContext, ShowFoto.class);
+                Intent intent = new Intent(mContext, SingleImageFragment.class);
                 intent.putExtra("position", itemPosition + "");
                 intent.putExtra("fotos", Parcels.wrap(fotoslist));
 
