@@ -6,9 +6,11 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.support.v7.widget.RecyclerView;
 import android.util.Base64;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -32,6 +34,7 @@ import info.androidhive.locationapi.R;
 public class FirebaseFotoViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
     View mView;
     Context mContext;
+    String userId = FirebaseAuth.getInstance().getCurrentUser().getUid();
 
     public FirebaseFotoViewHolder(View itemView) {
         super(itemView);
@@ -60,18 +63,20 @@ public class FirebaseFotoViewHolder extends RecyclerView.ViewHolder implements V
         ref.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                dataSnapshot.getRef();
+                DatabaseReference singleFoto = dataSnapshot.getRef().child(userId).child("pushId");
+
+                Log.i("Database Reference", singleFoto.toString());
 //                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
 //                    fotoslist.add(snapshot.getValue(Fotos.class));
 //                }
 
-                int itemPosition = getLayoutPosition();
-
-                Intent intent = new Intent(mContext, SingleImageFragment.class);
-                intent.putExtra("position", itemPosition + "");
-                intent.putExtra("fotos", Parcels.wrap(fotoslist));
-
-                mContext.startActivity(intent);
+//                int itemPosition = getLayoutPosition();
+//
+//                Intent intent = new Intent(mContext, SingleImageFragment.class);
+//                intent.putExtra("position", itemPosition + "");
+//                intent.putExtra("fotos", Parcels.wrap(fotoslist));
+//
+//                mContext.startActivity(intent);
             }
 
             @Override
