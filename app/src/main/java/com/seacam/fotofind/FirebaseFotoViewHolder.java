@@ -63,15 +63,14 @@ public class FirebaseFotoViewHolder extends RecyclerView.ViewHolder implements V
         ref.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                DatabaseReference singleFoto = dataSnapshot.getRef().child(userId).child("pushId");
+                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                    fotoslist.add(snapshot.getValue(Fotos.class));
+                }
 
-                Log.i("Database Reference", singleFoto.toString());
-//                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
-//                    fotoslist.add(snapshot.getValue(Fotos.class));
-//                }
+                int itemPosition = getLayoutPosition();
 
-//                int itemPosition = getLayoutPosition();
-//
+                Log.i("THIS IS THE POSITION", String.valueOf(itemPosition));
+
 //                Intent intent = new Intent(mContext, SingleImageFragment.class);
 //                intent.putExtra("position", itemPosition + "");
 //                intent.putExtra("fotos", Parcels.wrap(fotoslist));

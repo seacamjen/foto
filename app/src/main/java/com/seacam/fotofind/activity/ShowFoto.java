@@ -184,6 +184,11 @@ public class ShowFoto extends AppCompatActivity implements GoogleApiClient.Conne
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        mFirebaseAdapter.cleanup();
+        try {
+            mFirebaseAdapter.cleanup();
+        } catch (NullPointerException e) {
+            e.printStackTrace();
+        }
+
     }
 }
