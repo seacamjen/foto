@@ -1,5 +1,8 @@
 package com.seacam.fotofind.models;
 
+import org.parceler.Parcel;
+
+@Parcel
 public class Fotos {
     double latitude;
     double longitude;
