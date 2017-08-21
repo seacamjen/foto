@@ -18,8 +18,6 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.seacam.fotofind.models.Fotos;
 
-import org.parceler.Parcels;
-
 import java.io.IOException;
 import java.util.ArrayList;
 
@@ -69,11 +67,11 @@ public class FirebaseFotoViewHolder extends RecyclerView.ViewHolder implements V
 
                 Log.i("THIS IS THE POSITION", String.valueOf(itemPosition));
 
-                Intent intent = new Intent(mContext, ImageDetails.class);
-                intent.putExtra("position", itemPosition + "");
-                intent.putExtra("fotos", Parcels.wrap(fotoslist));
-
-                mContext.startActivity(intent);
+//                Intent intent = new Intent(mContext, ImageDetails.class);
+//                intent.putExtra("position", itemPosition + "");
+//                intent.putExtra("fotos", Parcels.wrap(fotoslist));
+//
+//                mContext.startActivity(intent);
             }
 
             @Override
