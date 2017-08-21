@@ -49,11 +49,12 @@
         <activity
             android:name="com.seacam.fotofind.activity.ShowFoto"
             android:label="@string/map_page"
-            android:screenOrientation="portrait" >
+            android:screenOrientation="portrait">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.seacam.fotofind.activity.MapActivity" />
         </activity>
+        <activity android:name="com.seacam.fotofind.activity.ImageDetails"></activity>
     </application>
 
 </manifest>
