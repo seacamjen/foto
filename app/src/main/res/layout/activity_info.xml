@@ -27,8 +27,4 @@
             app:layout_constraintRight_toRightOf="parent" />
 
     </ScrollView>
-
-
-
-
 </android.support.constraint.ConstraintLayout>

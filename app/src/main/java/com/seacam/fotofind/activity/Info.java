@@ -14,11 +14,8 @@ import com.google.firebase.auth.FirebaseAuth;
 import butterknife.Bind;
 import info.androidhive.locationapi.R;
 
-
 public class Info extends AppCompatActivity {
     private static final int REQUEST_IMAGE_CAPTURE = 111;
-
-    @Bind(R.id.privacy_policy_text) TextView mPrivPoli;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
