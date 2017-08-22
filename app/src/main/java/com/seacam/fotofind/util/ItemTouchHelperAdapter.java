@@ -5,5 +5,6 @@ package com.seacam.fotofind.util;
  */
 
 public interface ItemTouchHelperAdapter {
-    void onItemDismissed(int position);
+    boolean onItemMove (int fromPosition, int toPosition);
+    void onItemDismiss (int position);
 }
