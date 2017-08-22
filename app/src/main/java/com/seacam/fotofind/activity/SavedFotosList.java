@@ -21,6 +21,7 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 import com.seacam.fotofind.FirebaseFotoViewHolder;
 import com.seacam.fotofind.adapters.FirebaseFotoListAdapter;
@@ -40,7 +41,6 @@ public class SavedFotosList extends AppCompatActivity implements OnStartDragList
     private String imageToSave;
 
     private DatabaseReference mFotosRef;
-//    private FirebaseRecyclerAdapter mFirebaseAdapter;
     private FirebaseFotoListAdapter mFirebaseAdapter;
     private ItemTouchHelper mItemTouchHelper;
 
@@ -60,10 +60,15 @@ public class SavedFotosList extends AppCompatActivity implements OnStartDragList
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         String uid = user.getUid();
 
-        mFotosRef = FirebaseDatabase.getInstance().getReference(Constants.FIREBASE_DATABASE_PHOTOS).child(uid);
+        Query query = FirebaseDatabase.getInstance()
+                .getReference(Constants.FIREBASE_DATABASE_PHOTOS)
+                .child(uid)
+                .orderByChild(Constants.FIREBASE_QUERY_INDEX);
+
+//        mFotosRef = FirebaseDatabase.getInstance().getReference(Constants.FIREBASE_DATABASE_PHOTOS).child(uid);
 
         int numberOfColumns = 2;
-        mFirebaseAdapter = new FirebaseFotoListAdapter(Fotos.class, R.layout.foto_list_item, FirebaseFotoViewHolder.class, mFotosRef, this, this);
+        mFirebaseAdapter = new FirebaseFotoListAdapter(Fotos.class, R.layout.foto_list_item, FirebaseFotoViewHolder.class, query, this, this);
 
         mRecyclerView.setHasFixedSize(true);
         mRecyclerView.setLayoutManager(new GridLayoutManager(this, numberOfColumns));
