@@ -54,6 +54,7 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.seacam.fotofind.activity.MapActivity" />
         </activity>
+        <activity android:name="com.seacam.fotofind.activity.Info"></activity>
     </application>
 
 </manifest>
