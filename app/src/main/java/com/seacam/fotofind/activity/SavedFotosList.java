@@ -97,6 +97,11 @@ public class SavedFotosList extends AppCompatActivity implements OnStartDragList
             logout();
             return true;
         }
+        if (id == R.id.action_info) {
+            Intent intent = new Intent(SavedFotosList.this, Info.class);
+            startActivity(intent);
+            return true;
+        }
         return super.onOptionsItemSelected(item);
     }
 
