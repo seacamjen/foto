@@ -34,6 +34,8 @@ public class FirebaseFotoViewHolder extends RecyclerView.ViewHolder implements V
     Context mContext;
     String userId = FirebaseAuth.getInstance().getCurrentUser().getUid();
 
+    public ImageView mFotosImageView;
+
     public FirebaseFotoViewHolder(View itemView) {
         super(itemView);
         mView = itemView;
@@ -42,12 +44,12 @@ public class FirebaseFotoViewHolder extends RecyclerView.ViewHolder implements V
     }
 
     public void bindFoto(Fotos fotos) {
-        ImageView fotoTaken = (ImageView) mView.findViewById(R.id.foto_image);
+        mFotosImageView = (ImageView) mView.findViewById(R.id.foto_image);
 
         try {
             Bitmap imageBitmap = decodeFromFirebaseBase64(fotos.getImage());
-            fotoTaken.setImageBitmap(imageBitmap);
-            fotoTaken.setRotation(90);
+            mFotosImageView.setImageBitmap(imageBitmap);
+            mFotosImageView.setRotation(90);
         } catch (IOException e) {
             e.printStackTrace();
         }
