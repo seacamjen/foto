@@ -21,7 +21,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.FrameLayout;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.google.android.gms.common.ConnectionResult;
@@ -53,9 +52,7 @@ import com.seacam.fotofind.util.Constants;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
-import java.util.ArrayList;
 
-import butterknife.Bind;
 import butterknife.ButterKnife;
 import info.androidhive.locationapi.R;
 
