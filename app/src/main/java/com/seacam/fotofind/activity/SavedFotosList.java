@@ -62,7 +62,7 @@ public class SavedFotosList extends AppCompatActivity implements OnStartDragList
 
         mFotosRef = FirebaseDatabase.getInstance().getReference(Constants.FIREBASE_DATABASE_PHOTOS).child(uid);
 
-        int numberOfColumns = 3;
+        int numberOfColumns = 2;
         mFirebaseAdapter = new FirebaseFotoListAdapter(Fotos.class, R.layout.foto_list_item, FirebaseFotoViewHolder.class, mFotosRef, this, this);
 
         mRecyclerView.setHasFixedSize(true);

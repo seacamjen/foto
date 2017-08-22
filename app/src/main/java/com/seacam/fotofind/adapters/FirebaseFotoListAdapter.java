@@ -45,11 +45,12 @@ public class FirebaseFotoListAdapter extends FirebaseRecyclerAdapter<Fotos, Fire
 
     @Override
     public boolean onItemMove(int fromPosition, int toPoisition) {
+        notifyItemMoved(fromPosition, toPoisition);
         return false;
     }
 
     @Override
     public void onItemDismiss(int position) {
-
+        getRef(position).removeValue();
     }
 }
