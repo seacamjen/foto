@@ -23,6 +23,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.seacam.fotofind.FirebaseFotoFoundViewHolder;
 import com.seacam.fotofind.FirebaseFotoViewHolder;
 import com.seacam.fotofind.models.Fotos;
 import com.seacam.fotofind.util.Constants;
@@ -165,9 +166,9 @@ public class ShowFoto extends AppCompatActivity implements GoogleApiClient.Conne
         String uid = user.getUid();
         mFotosRef = FirebaseDatabase.getInstance().getReference(Constants.FIREBASE_DATABASE_PHOTOS).child(uid);
         int numberOfColumns = 1;
-        mFirebaseAdapter = new FirebaseRecyclerAdapter<Fotos, FirebaseFotoViewHolder>(Fotos.class, R.layout.foto_list_item, FirebaseFotoViewHolder.class, mFotosRef.orderByChild("latitude").equalTo(latitude)) {
+        mFirebaseAdapter = new FirebaseRecyclerAdapter<Fotos, FirebaseFotoFoundViewHolder>(Fotos.class, R.layout.foto_found_item, FirebaseFotoFoundViewHolder.class, mFotosRef.orderByChild("latitude").equalTo(latitude)) {
             @Override
-            protected void populateViewHolder(FirebaseFotoViewHolder viewHolder, Fotos model, int position) {
+            protected void populateViewHolder(FirebaseFotoFoundViewHolder viewHolder, Fotos model, int position) {
                 viewHolder.bindFoto(model);
             }
         };
