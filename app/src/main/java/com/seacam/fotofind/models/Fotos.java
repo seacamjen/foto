@@ -9,6 +9,7 @@ public class Fotos {
     long time;
     String image;
     private String pushId;
+    String index;
 
     public Fotos() {}
 
@@ -17,6 +18,7 @@ public class Fotos {
         this.longitude = longitude;
         this.time = time;
         this.image = image;
+        this.index = "not specified";
     }
 
     public double getLatitude() {
@@ -41,5 +43,13 @@ public class Fotos {
 
     public void setPushId(String pushId) {
         this.pushId = pushId;
+    }
+
+    public String getIndex(){
+        return index;
+    }
+
+    public void setIndex(String index) {
+        this.index = index;
     }
 }
