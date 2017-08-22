@@ -371,6 +371,10 @@ public class MapActivity extends AppCompatActivity
         final Double findLat = mLastKnownLocation.getLatitude();
         final Double findLong = mLastKnownLocation.getLongitude();
 
+        final Location lastLocation = new Location("lastLocation");
+        lastLocation.setLongitude(findLong);
+        lastLocation.setLatitude(findLat);
+
         DatabaseReference locationRef = refDatabase;
         locationRef.addValueEventListener(new ValueEventListener() {
             @Override
@@ -379,11 +383,23 @@ public class MapActivity extends AppCompatActivity
                     Double latitude = value.child("latitude").getValue(Double.class);
                     Double longitude = value.child("longitude").getValue(Double.class);
 
-                    if (latitude.equals(findLat) && longitude.equals(findLong)) {
+                    final Location fotoLocation = new Location("fotoLocation");
+                    fotoLocation.setLatitude(latitude);
+                    fotoLocation.setLongitude(longitude);
+
+                    if (fotoLocation.distanceTo(lastLocation) < 1) {
                         String key = value.child("pushId").getValue(String.class);
                         pushId = key;
                         mGoToFotos.setVisibility(View.VISIBLE);
                     }
+
+                    Log.i("THIS IS THE DISTANCE", String.valueOf(fotoLocation.distanceTo(lastLocation)));
+
+//                    if (latitude.equals(findLat) && longitude.equals(findLong)) {
+//                        String key = value.child("pushId").getValue(String.class);
+//                        pushId = key;
+//                        mGoToFotos.setVisibility(View.VISIBLE);
+//                    }
                 }
 
             }
