@@ -32,7 +32,6 @@ import info.androidhive.locationapi.R;
 public class FirebaseFotoViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
     View mView;
     Context mContext;
-    String userId = FirebaseAuth.getInstance().getCurrentUser().getUid();
 
     public ImageView mFotosImageView;
 
