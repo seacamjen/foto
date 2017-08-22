@@ -7,6 +7,7 @@ import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.helper.ItemTouchHelper;
 import android.util.Base64;
 import android.util.Log;
 import android.view.Menu;
@@ -22,8 +23,11 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.seacam.fotofind.FirebaseFotoViewHolder;
+import com.seacam.fotofind.adapters.FirebaseFotoListAdapter;
 import com.seacam.fotofind.models.Fotos;
 import com.seacam.fotofind.util.Constants;
+import com.seacam.fotofind.util.OnStartDragListener;
+import com.seacam.fotofind.util.SimpleItemTouchHelperCallback;
 
 import java.io.ByteArrayOutputStream;
 
@@ -31,36 +35,19 @@ import butterknife.Bind;
 import butterknife.ButterKnife;
 import info.androidhive.locationapi.R;
 
-public class SavedFotosList extends AppCompatActivity {
+public class SavedFotosList extends AppCompatActivity implements OnStartDragListener {
     private static final int REQUEST_IMAGE_CAPTURE = 111;
     private String imageToSave;
 
     private DatabaseReference mFotosRef;
-    private FirebaseRecyclerAdapter mFirebaseAdapter;
+//    private FirebaseRecyclerAdapter mFirebaseAdapter;
+    private FirebaseFotoListAdapter mFirebaseAdapter;
+    private ItemTouchHelper mItemTouchHelper;
 
     @Bind(R.id.recyclerView) RecyclerView mRecyclerView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-        String uid = user.getUid();
-
-        mFotosRef = FirebaseDatabase.getInstance().getReference(Constants.FIREBASE_DATABASE_PHOTOS).child(uid);
-
-//        mFotosRef.addValueEventListener(new ValueEventListener() {
-//            @Override
-//            public void onDataChange(DataSnapshot dataSnapshot) {
-//                for (DataSnapshot foto : dataSnapshot.getChildren()) {
-//                    String fotos = foto.child(Constants.FIREBASE_DATABASE_IMAGE).getValue().toString();
-//                    Log.d("Foto updated", "Foto: " + fotos);
-//                }
-//            }
-//
-//            @Override
-//            public void onCancelled(DatabaseError databaseError) {
-//
-//            }
-//        });
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_saved_fotos_list);
@@ -70,16 +57,21 @@ public class SavedFotosList extends AppCompatActivity {
     }
 
     private void setUpFirebaseAdapter() {
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        String uid = user.getUid();
+
+        mFotosRef = FirebaseDatabase.getInstance().getReference(Constants.FIREBASE_DATABASE_PHOTOS).child(uid);
+
         int numberOfColumns = 3;
-        mFirebaseAdapter = new FirebaseRecyclerAdapter<Fotos, FirebaseFotoViewHolder>(Fotos.class, R.layout.foto_list_item, FirebaseFotoViewHolder.class, mFotosRef) {
-            @Override
-            protected void populateViewHolder(FirebaseFotoViewHolder viewHolder, Fotos model, int position) {
-                viewHolder.bindFoto(model);
-            }
-        };
+        mFirebaseAdapter = new FirebaseFotoListAdapter(Fotos.class, R.layout.foto_list_item, FirebaseFotoViewHolder.class, mFotosRef, this, this);
+
         mRecyclerView.setHasFixedSize(true);
         mRecyclerView.setLayoutManager(new GridLayoutManager(this, numberOfColumns));
         mRecyclerView.setAdapter(mFirebaseAdapter);
+
+        ItemTouchHelper.Callback callback = new SimpleItemTouchHelperCallback(mFirebaseAdapter);
+        mItemTouchHelper = new ItemTouchHelper(callback);
+        mItemTouchHelper.attachToRecyclerView(mRecyclerView);
     }
 
     @Override
@@ -148,5 +140,10 @@ public class SavedFotosList extends AppCompatActivity {
     protected void onDestroy() {
         super.onDestroy();
         mFirebaseAdapter.cleanup();
+    }
+
+    @Override
+    public void onStartDrag(RecyclerView.ViewHolder viewHolder) {
+        mItemTouchHelper.startDrag(viewHolder);
     }
 }
