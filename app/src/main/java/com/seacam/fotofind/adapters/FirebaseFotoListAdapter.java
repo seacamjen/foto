@@ -1,6 +1,9 @@
 package com.seacam.fotofind.adapters;
 
 import android.content.Context;
+import android.support.v4.view.MotionEventCompat;
+import android.view.MotionEvent;
+import android.view.View;
 
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.google.firebase.database.DatabaseReference;
@@ -27,8 +30,17 @@ public class FirebaseFotoListAdapter extends FirebaseRecyclerAdapter<Fotos, Fire
     }
 
     @Override
-    protected void populateViewHolder(FirebaseFotoViewHolder viewHolder, Fotos model, int position) {
+    protected void populateViewHolder(final FirebaseFotoViewHolder viewHolder, Fotos model, int position) {
         viewHolder.bindFoto(model);
+        viewHolder.mFotosImageView.setOnTouchListener(new View.OnTouchListener(){
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                if (MotionEventCompat.getActionMasked(event) == MotionEvent.ACTION_DOWN) {
+                    mOnStartDragListener.onStartDrag(viewHolder);
+                }
+                return false;
+            }
+        });
     }
 
     @Override
