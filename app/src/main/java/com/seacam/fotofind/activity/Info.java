@@ -1,17 +1,15 @@
 package com.seacam.fotofind.activity;
 
 import android.content.Intent;
+import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.widget.TextView;
 
 import com.google.firebase.auth.FirebaseAuth;
 
-import butterknife.Bind;
 import info.androidhive.locationapi.R;
 
 public class Info extends AppCompatActivity {

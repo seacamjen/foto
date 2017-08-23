@@ -24,7 +24,6 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.seacam.fotofind.FirebaseFotoFoundViewHolder;
-import com.seacam.fotofind.FirebaseFotoViewHolder;
 import com.seacam.fotofind.models.Fotos;
 import com.seacam.fotofind.util.Constants;
 
