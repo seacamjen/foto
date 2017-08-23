@@ -387,7 +387,7 @@ public class MapActivity extends AppCompatActivity
                     fotoLocation.setLatitude(latitude);
                     fotoLocation.setLongitude(longitude);
 
-                    if (fotoLocation.distanceTo(lastLocation) < 1) {
+                    if (fotoLocation.distanceTo(lastLocation) < 5) {
                         String key = value.child("pushId").getValue(String.class);
                         pushId = key;
                         mGoToFotos.setVisibility(View.VISIBLE);
