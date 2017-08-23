@@ -30,16 +30,23 @@
             android:name="com.seacam.fotofind.activity.MapActivity"
             android:label="@string/map_page"
             android:screenOrientation="portrait" />
-        <activity android:name="com.seacam.fotofind.activity.SaveFoto">
+        <activity
+            android:name="com.seacam.fotofind.activity.SaveFoto"
+            android:screenOrientation="portrait">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.seacam.fotofind.activity.SavedFotosList" />
         </activity>
         <activity
             android:name="com.seacam.fotofind.activity.SavedFotosList"
-            android:label="@string/fotos_list_page" />
-        <activity android:name="com.seacam.fotofind.activity.CreateAccount" />
-        <activity android:name="com.seacam.fotofind.activity.LoginActivity">
+            android:label="@string/fotos_list_page"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name="com.seacam.fotofind.activity.CreateAccount"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name="com.seacam.fotofind.activity.LoginActivity"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
