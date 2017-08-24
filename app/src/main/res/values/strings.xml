@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Foto Find</string>
+    <string name="app_name">Find My Fotos</string>
     <string name="map_page">Foto Map</string>
     <string name="fotos_list_page">My Fotos</string>
     <string name="lbl_you_are_at">YOU ARE AT</string>
