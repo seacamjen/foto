@@ -37,7 +37,8 @@ public class FirebaseFotoViewHolder extends RecyclerView.ViewHolder implements V
         try {
             Bitmap imageBitmap = decodeFromFirebaseBase64(fotos.getImage());
             mFotosImageView.setImageBitmap(imageBitmap);
-            mFotosImageView.setRotation(90);
+            //flip image only for emulator on computer
+//            mFotosImageView.setRotation(90);
         } catch (IOException e) {
             e.printStackTrace();
         }
