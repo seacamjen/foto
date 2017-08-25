@@ -40,10 +40,10 @@
         <activity
             android:name="com.seacam.fotofind.activity.SavedFotosList"
             android:label="@string/fotos_list_page"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait" />
         <activity
             android:name="com.seacam.fotofind.activity.CreateAccount"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait" />
         <activity
             android:name="com.seacam.fotofind.activity.LoginActivity"
             android:screenOrientation="portrait">
@@ -61,7 +61,8 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.seacam.fotofind.activity.MapActivity" />
         </activity>
-        <activity android:name="com.seacam.fotofind.activity.Info"></activity>
+        <activity android:name="com.seacam.fotofind.activity.Info" />
+        <activity android:name="com.seacam.fotofind.activity.Tutorial"></activity>
     </application>
 
 </manifest>
