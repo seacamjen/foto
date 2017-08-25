@@ -48,9 +48,7 @@
             android:name="com.seacam.fotofind.activity.LoginActivity"
             android:screenOrientation="portrait">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity
@@ -62,7 +60,11 @@
                 android:value="com.seacam.fotofind.activity.MapActivity" />
         </activity>
         <activity android:name="com.seacam.fotofind.activity.Info" />
-        <activity android:name="com.seacam.fotofind.activity.Tutorial"></activity>
+        <activity android:name="com.seacam.fotofind.activity.Tutorial">
+            <action android:name="android.intent.action.MAIN" />
+
+            <category android:name="android.intent.category.LAUNCHER" />
+        </activity>
     </application>
 
 </manifest>
