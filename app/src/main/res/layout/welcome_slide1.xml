@@ -18,9 +18,7 @@
         app:layout_constraintTop_toTopOf="parent"
         android:layout_marginTop="8dp"
         android:id="@+id/imageView"
-        app:layout_constraintVertical_bias="0.505"
-        app:layout_constraintHorizontal_bias="0.503"
-        tools:layout_editor_absoluteX="51dp" />
+        app:layout_constraintVertical_bias="0.408" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -57,7 +55,7 @@
         app:layout_constraintLeft_toLeftOf="parent"
         android:layout_marginRight="8dp"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintVertical_bias="0.983"
+        app:layout_constraintVertical_bias="0.909"
         android:id="@+id/textView"
         app:layout_constraintHorizontal_bias="1.0" />
 
